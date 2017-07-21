@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MERRA 2</title>
+    <!-- Core CSS - Include with every page -->
+    <link href="assets/plugins/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="assets/plugins/pace/pace-theme-big-counter.css" rel="stylesheet" />
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <link href="assets/css/main-style.css" rel="stylesheet" />
+    <!-- Page-Level CSS -->
+    <link href="assets/plugins/morris/morris-0.4.3.min.css" rel="stylesheet" />
+   </head>
+<body>
+    <!--  wrapper -->
+    <div id="wrapper">
+        <!-- navbar top -->
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="navbar">
+            <!-- navbar-header -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <h2 style="color: white;font-weight: 20px;"><strong>MERRA 2</strong></h2>
+            </div>
+            <!-- end navbar-header -->
+            <!-- navbar-top-links -->
+            <ul class="nav navbar-top-links navbar-right">
+                <!-- main dropdown -->
+                <li class="dropdown">
+                    
+                    <!-- dropdown-messages -->
+                    <ul class="dropdown-menu dropdown-messages">
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <strong><span class=" label label-danger">Andrew Smith</span></strong>
+                                    <span class="pull-right text-muted">
+                                        <em>Yesterday</em>
+                                    </span>
+                                </div>
+                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <strong><span class=" label label-info">Jonney Depp</span></strong>
+                                    <span class="pull-right text-muted">
+                                        <em>Yesterday</em>
+                                    </span>
+                                </div>
+                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <strong><span class=" label label-success">Jonney Depp</span></strong>
+                                    <span class="pull-right text-muted">
+                                        <em>Yesterday</em>
+                                    </span>
+                                </div>
+                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a class="text-center" href="#">
+                                <strong>Read All Messages</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- end dropdown-messages -->
+                </li>
+
+                
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-3x"></i>
+                    </a>
+                    <!-- dropdown user-->
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i>User Profile</a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i>Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i>Logout</a>
+                        </li>
+                    </ul>
+                    <!-- end dropdown-user -->
+                </li>
+                <!-- end main dropdown -->
+            </ul>
+            <!-- end navbar-top-links -->
+
+        </nav>
+        <!-- end navbar top -->
+
+        <!-- navbar side -->
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <!-- sidebar-collapse -->
+            <div class="sidebar-collapse">
+                <!-- side-menu -->
+                <ul class="nav" id="side-menu">
+                    <li>
+                        <!-- user image section-->
+                        <div class="user-section">
+                            <div class="user-section-inner">
+                                <img src="assets/img/user.jpg" alt="">
+                            </div>
+                            <div class="user-info">
+                                <div>Paul</div>
+                                <div class="user-text-online">
+                                    <span class="user-circle-online btn btn-success btn-circle "></span>&nbsp;Online
+                                </div>
+                            </div>
+                        </div>
+                        <!--end user image section-->
+                    </li>
+                    <li class="sidebar-search">
+                        <!-- search section-->
+                        <div class="input-group custom-search-form">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                        <!--end search section-->
+                    </li>
+                    <li class="selected">
+                        <a href="index.html"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>
+                    </li>
+                    
+                    
+                </ul>
+                <!-- end side-menu -->
+            </div>
+            <!-- end sidebar-collapse -->
+        </nav>
+        <!-- end navbar side -->
+        <!--  page-wrapper -->
+        <div id="page-wrapper">
+
+            <div class="row">
+                <!-- Page Header -->
+                <div class="col-lg-12">
+                    <h1 class="page-header">Dashboard</h1>
+                </div>
+                <!--End Page Header -->
+            </div>
+
+            <div class="row">
+                <!-- Welcome -->
+                <div class="col-lg-12">
+                    
+                </div>
+                <!--end  Welcome -->
+            </div>
+
+
+            <div class="row">
+                <!--quick info section -->
+                <div class="col-lg-3">
+                    <div class="alert alert-danger text-center">
+                        <i class="fa fa-calendar fa-3x"></i>&nbsp;<b>20 </b>Meetings Sheduled This Month
+
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="alert alert-success text-center">
+                        <i class="fa  fa-beer fa-3x"></i>&nbsp;<b>27 % </b>Profit Recorded in This Month  
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="alert alert-info text-center">
+                        <i class="fa fa-rss fa-3x"></i>&nbsp;<b>1,900</b> New Subscribers This Year
+
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="alert alert-warning text-center">
+                        <i class="fa  fa-pencil fa-3x"></i>&nbsp;<b>2,000 $ </b>Payment Dues For Rejected Items
+                    </div>
+                </div>
+                <!--end quick info section -->
+            </div>
+
+            <div class="row">
+                <div class="col-lg-8">
+
+
+
+                    <!--Area chart example -->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <i class="fa fa-bar-chart-o fa-fw"></i>Area Chart Example
+                            <div class="pull-right">
+                                <div class="btn-group">
+                                    
+                                    <ul class="dropdown-menu pull-right" role="menu">
+                                        <li><a href="#">Action</a>
+                                        </li>
+                                        <li><a href="#">Another action</a>
+                                        </li>
+                                        <li><a href="#">Something else here</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Separated link</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+                            <div id="morris-area-chart"></div>
+                        </div>
+
+                    </div>
+                    <!--End area chart example -->
+                    <hr style="color: black;">
+                    <h2><a href="./map.html" target="_blank">Click here</a> to view map</h2>
+                    <div class="form-group">
+  						<label class="col-lg-2 control-label" for="textinput">Latitude</label>  
+  						<div class="col-lg-4">
+  							<input id="textinput" name="textinput" type="text" required="required" class="form-control input-md">
+ 						</div>
+					</div>
+					<div class="form-group">
+  						<label class="col-lg-2 control-label" for="textinput">Longitude</label>  
+  						<div class="col-lg-4">
+  							<input id="textinput" name="textinput" type="text" required="required" class="form-control input-md">
+ 						</div>
+					</div>
+					<div class="form-group">
+  <label class="col-lg-2 control-label" for="selectbasic">Start Yr.</label>
+  <div class="col-lg-2">
+    <select id="styear" name="styear" required="required" class="form-control">
+      <script>
+      	var myDate = new Date();
+      	var styear = myDate.getFullYear();
+      	for(var i = 1980; i < styear+1; i++){
+      		document.write('<option value="'+i+'">'+i+'</option>');
+      	}
+      </script>
+    </select>
+  </div>
+  <label class="col-md-2 control-label" for="selectbasic">Start Month</label>
+  <div class="col-md-2">
+    <select id="stmon" name="stmon" required="required" class="form-control">
+      <option value="1">JAN</option>
+      <option value="1">FEB</option>
+      <option value="1">MAR</option>
+      <option value="1">APR</option>
+      <option value="1">MAY</option>
+      <option value="1">JUN</option>
+      <option value="1">JUL</option>
+      <option value="1">AUG</option>
+      <option value="1">SEP</option>
+      <option value="1">OCT</option>
+      <option value="1">NOV</option>
+      <option value="1">DEC</option>
+    </select>
+  </div>
+  <label class="col-md-2 control-label" for="selectbasic">Start Date.</label>
+  <div class="col-md-2">
+    <select id="stdate" name="stdate" required="required" class="form-control">
+     <script>
+     	for(var i = 1; i < 32; i++){
+     		if(i < 10)
+     		{
+     			i1 = "0" + i;
+     		}
+     		else
+     		{
+     			i1 = i;
+     		}
+     		document.write('<option value="'+i1+'">'+i1+'</option>')
+     	}
+     </script>
+    </select>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-2 control-label" for="selectbasic">End Yr.</label>
+  <div class="col-md-2">
+    <select id="endyear" name="endyear" required="required" class="form-control">
+      <script>
+      	var myDate = new Date();
+      	var endyear = myDate.getFullYear();
+      	for(var i = 1980; i < endyear+1; i++){
+      		document.write('<option value="'+i+'">'+i+'</option>');
+      	}
+      </script>
+    </select>
+  </div>
+  <label class="col-md-2 control-label" for="selectbasic">End Month</label>
+  <div class="col-md-2">
+    <select id="endmon" name="endmon" required="required" class="form-control">
+      <option value="1">JAN</option>
+      <option value="1">FEB</option>
+      <option value="1">MAR</option>
+      <option value="1">APR</option>
+      <option value="1">MAY</option>
+      <option value="1">JUN</option>
+      <option value="1">JUL</option>
+      <option value="1">AUG</option>
+      <option value="1">SEP</option>
+      <option value="1">OCT</option>
+      <option value="1">NOV</option>
+      <option value="1">DEC</option>
+    </select>
+  </div>
+  <label class="col-md-2 control-label" for="selectbasic">End Date.</label>
+  <div class="col-md-2">
+    <select id="enddate" name="enddate" required="required" class="form-control">
+     <script>
+     	for(var i = 1; i < 32; i++){
+     		if(i < 10)
+     		{
+     			i1 = "0" + i;
+     		}
+     		else
+     		{
+     			i1 = i;
+     		}
+     		document.write('<option value="'+i1+'">'+i1+'</option>')
+     	}
+     </script>
+    </select>
+  </div>
+</div>
+<h2> Parameters</h2>
+<tr colspan="2" align="left">
+                <td id="Param1"><input name="variable" value="cldprs" type="checkbox">CLDPRS = cloud top pressure<br><input name="variable" value="cldtmp" type="checkbox">CLDTMP = cloud top temperature<br><input name="variable" value="disph" type="checkbox">DISPH = zero plane displacement height<br><input name="variable" value="h1000" type="checkbox">H1000 = height at 1000 mb<br><input name="variable" value="h250" type="checkbox">H250 = height at 250 hpa<br><input name="variable" value="h500" type="checkbox">H500 = height at 500 hpa<br><input name="variable" value="h850" type="checkbox">H850 = height at 850 hpa<br><input name="variable" value="omega500" type="checkbox">OMEGA500 = omega at 500 hpa<br><input name="variable" value="pbltop" type="checkbox">PBLTOP = pbltop pressure<br><input name="variable" value="ps" type="checkbox">PS = surface pressure<br><input name="variable" value="q250" type="checkbox">Q250 = specific humidity at 250 hpa<br><input name="variable" value="q500" type="checkbox">Q500 = specific humidity at 500 hpa<br><input name="variable" value="q850" type="checkbox">Q850 = specific humidity at 850 hpa<br><input name="variable" value="qv10m" type="checkbox">QV10M = 10-meter specific humidity<br><input name="variable" value="qv2m" type="checkbox">QV2M = 2-meter specific humidity<br><input name="variable" value="slp" type="checkbox">SLP = sea level pressure<br><input name="variable" value="t10m" type="checkbox">T10M = 10-meter air temperature<br><input name="variable" value="t250" type="checkbox">T250 = air temperature at 250 hpa<br><input name="variable" value="t2m" type="checkbox">T2M = 2-meter air temperature<br><input name="variable" value="t2mdew" type="checkbox">T2MDEW = dew point temperature at 2 m<br><input name="variable" value="t2mwet" type="checkbox">T2MWET = wet bulb temperature at 2 m<br><input name="variable" value="t500" type="checkbox">T500 = air temperature at 500 hpa<br><input name="variable" value="t850" type="checkbox">T850 = air temperature at 850 hpa<br><input name="variable" value="to3" type="checkbox">TO3 = total column ozone<br><input name="variable" value="tox" type="checkbox">TOX = total column odd oxygen<br><input name="variable" value="tqi" type="checkbox">TQI = total precipitable ice water<br><input name="variable" value="tql" type="checkbox">TQL = total precipitable liquid water<br><input name="variable" value="tqv" type="checkbox">TQV = total precipitable water vapor<br><input name="variable" value="troppb" type="checkbox">TROPPB = tropopause pressure based on blended estimate<br><input name="variable" value="troppt" type="checkbox">TROPPT = tropopause pressure based on thermal estimate<br><input name="variable" value="troppv" type="checkbox">TROPPV = tropopause pressure based on epv estimate<br><input name="variable" value="tropq" type="checkbox">TROPQ = tropopause specific humidity using blended tropp estimate<br><input name="variable" value="tropt" type="checkbox">TROPT = tropopause temperature using blended tropp estimate<br><input name="variable" value="ts" type="checkbox">TS = surface skin temperature<br><input name="variable" value="u10m" type="checkbox">U10M = 10-meter eastward wind<br><input name="variable" value="u250" type="checkbox">U250 = eastward wind at 250 hpa<br><input name="variable" value="u2m" type="checkbox">U2M = 2-meter eastward wind<br><input name="variable" value="u500" type="checkbox">U500 = eastward wind at 500 hpa<br><input name="variable" value="u50m" type="checkbox">U50M = eastward wind at 50 meters<br><input name="variable" value="u850" type="checkbox">U850 = eastward wind at 850 hpa<br><input name="variable" value="v10m" type="checkbox">V10M = 10-meter northward wind<br><input name="variable" value="v250" type="checkbox">V250 = northward wind at 250 hpa<br><input name="variable" value="v2m" type="checkbox">V2M = 2-meter northward wind<br><input name="variable" value="v500" type="checkbox">V500 = northward wind at 500 hpa<br><input name="variable" value="v50m" type="checkbox">V50M = northward wind at 50 meters<br><input name="variable" value="v850" type="checkbox">V850 = northward wind at 850 hpa<br><input name="variable" value="zlcl" type="checkbox">ZLCL = lifting condensation level<br></td>
+      </tr><br>
+      <div class="form-group">
+  <div class="col-lg-4">
+    <button id="singlebutton" name="singlebutton" class="btn btn-primary" style="width: 84px;height: 38px;">Submit</button>
+  </div>
+</div>
+               </div>
+
+                <div class="col-lg-4">
+                    <div class="panel panel-primary text-center no-boder">
+                        <div class="panel-body yellow">
+                            <i class="fa fa-bar-chart-o fa-3x"></i>
+                            <h3>20,741 </h3>
+                        </div>
+                        <div class="panel-footer">
+                            <span class="panel-eyecandy-title">Daily User Visits
+                            </span>
+                        </div>
+                    </div>
+                    <div class="panel panel-primary text-center no-boder">
+                        <div class="panel-body blue">
+                            <i class="fa fa-pencil-square-o fa-3x"></i>
+                            <h3>2,060 </h3>
+                        </div>
+                        <div class="panel-footer">
+                            <span class="panel-eyecandy-title">Pending Orders Found
+                            </span>
+                        </div>
+                    </div>
+                    <div class="panel panel-primary text-center no-boder">
+                        <div class="panel-body green">
+                            <i class="fa fa fa-floppy-o fa-3x"></i>
+                            <h3>20 GB</h3>
+                        </div>
+                        <div class="panel-footer">
+                            <span class="panel-eyecandy-title">New Data Uploaded
+                            </span>
+                        </div>
+                    </div>
+                    <div class="panel panel-primary text-center no-boder">
+                        <div class="panel-body red">
+                            <i class="fa fa-thumbs-up fa-3x"></i>
+                            <h3>2,700 </h3>
+                        </div>
+                        <div class="panel-footer">
+                            <span class="panel-eyecandy-title">New User Registered
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <hr>
+            <div class="row">
+                <div class="col-lg-4">
+                
+                </div>
+                <div class="col-lg-4">
+                    
+                </div>
+               
+            </div>
+
+
+         
+
+
+        </div>
+        <!-- end page-wrapper -->
+
+    </div>
+    <!-- end wrapper -->
+
+    <!-- Core Scripts - Include with every page -->
+    <script src="assets/plugins/jquery-1.10.2.js"></script>
+    <script src="assets/plugins/bootstrap/bootstrap.min.js"></script>
+    <script src="assets/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="assets/plugins/pace/pace.js"></script>
+    <script src="assets/scripts/siminta.js"></script>
+    <!-- Page-Level Plugin Scripts-->
+    <script src="assets/plugins/morris/raphael-2.1.0.min.js"></script>
+    <script src="assets/plugins/morris/morris.js"></script>
+    <script src="assets/scripts/dashboard-demo.js"></script>
+
+</body>
+
+</html>

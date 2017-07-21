@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>MERRA-2 Data download</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="css/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Timeline CSS -->
+    <link href="css/timeline.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/startmin.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="css/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7_MOZegHYuu8qwQChvPFG-VgPaY7ZNsY&callback=initMap"
+  type="text/javascript"></script>
+<script type="text/javascript">
+var geocoder = new google.maps.Geocoder();
+
+function geocodePosition(pos) {
+  geocoder.geocode({
+    latLng: pos
+  }, function(responses) {
+    if (responses && responses.length > 0) {
+      updateMarkerAddress(responses[0].formatted_address);
+    } else {
+      updateMarkerAddress('Cannot determine address at this location.');
+    }
+  });
+}
+
+function updateMarkerStatus(str) {
+  document.getElementById('markerStatus').innerHTML = str;
+}
+
+function updateMarkerPosition(latLng) {
+  document.getElementById('info').innerHTML = [latLng.lat()];
+  document.getElementById('info1').innerHTML = [latLng.lng()];
+
+}
+
+function updateMarkerAddress(str) {
+  document.getElementById('address').innerHTML = str;
+}
+
+function initialize() {
+  var latLng = new google.maps.LatLng(17.544, 78.572);
+  var map = new google.maps.Map(document.getElementById('mapCanvas'), {
+    zoom: 8,
+    center: latLng,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+  var marker = new google.maps.Marker({
+    position: latLng,
+    title: 'Point A',
+    map: map,
+    draggable: true
+  });
+
+  // Update current position info.
+  updateMarkerPosition(latLng);
+  geocodePosition(latLng);
+
+  // Add dragging event listeners.
+  google.maps.event.addListener(marker, 'dragstart', function() {
+    updateMarkerAddress('Dragging...');
+  });
+
+  google.maps.event.addListener(marker, 'drag', function() {
+    updateMarkerStatus('Dragging...');
+    updateMarkerPosition(marker.getPosition());
+  });
+
+  google.maps.event.addListener(marker, 'dragend', function() {
+    updateMarkerStatus('Drag ended');
+    geocodePosition(marker.getPosition());
+  });
+}
+
+// Onload handler to fire off the app.
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<style>
+  #mapCanvas {
+    width: 400px;
+    height: 400px;
+    float: left;
+  }
+  #infoPanel {
+    float: left;
+    margin-left: 10px;
+  }
+  #infoPanel div {
+    margin-bottom: 5px;
+  }
+  </style>
+<div id="wrapper">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">MERRA-2</a>
+        </div>
+
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+
+        <!-- Top Navigation: Left Menu -->
+        <ul class="nav navbar-nav navbar-left navbar-top-links">
+            <li><a href="#"><i class="fa fa-home fa-fw"></i> Website</a></li>
+        </ul>
+
+        <!-- Top Navigation: Right Menu -->
+        <ul class="nav navbar-right navbar-top-links">
+            
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-user fa-fw"></i> secondtruth <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <!-- Sidebar -->
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+
+                <ul class="nav" id="side-menu">
+                    <li class="sidebar-search">
+                        <div class="input-group custom-search-form">
+                            <input type="text" class="form-control" placeholder="Search...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary" type="button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                    </li>
+                    <!-- <li>
+                        <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="#">Second Level Item</a>
+                            </li>
+                            <li>
+                                <a href="#">Third Level <span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="#">Third Level Item</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li> -->
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div id="page-wrapper">
+        <div class="container-fluid">
+			<div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">MERRA-2 Data </h1>
+                    <div id="mapCanvas"></div>
+  					<b>Marker status:</b>
+    				<div id="markerStatus"><i>Click and drag the marker.</i></div>
+    				<b>Current position:</b><br>
+    				<span style="font-size: 18px;color: red;"><b>Latitude</b></span><div id="info" style="color: blue"></div>
+    				<span style="font-size: 18px;color: red;"><b>Longitude</b></span><div id="info1" style="color: blue"></div>
+    				</div>
+					
+					<form action="UsingDATFile.jsp" method="POST" target="dummyframe">
+    				<div class="form-group">
+  <label class="col-md-2 control-label" for="selectbasic">Start Yr.</label>
+  <div class="col-md-2">
+    <select id="startyr" name="startyr" required="required" class="form-control">
+      <script>
+      	var myDate = new Date();
+      	var startyr = myDate.getFullYear();
+      	for(var i = 1980; i < startyr+1; i++){
+      		document.write('<option value="'+i+'">'+i+'</option>');
+      	}
+      </script>
+    </select>
+  </div>
+  <label class="col-md-2 control-label" for="selectbasic">Start Month</label>
+  <div class="col-md-2">
+    <select id="startmon" name="startmon" required="required" class="form-control">
+      <option value="01">JAN</option>
+      <option value="02">FEB</option>
+      <option value="03">MAR</option>
+      <option value="04">APR</option>
+      <option value="05">MAY</option>
+      <option value="06">JUN</option>
+      <option value="07">JUL</option>
+      <option value="08">AUG</option>
+      <option value="09">SEP</option>
+      <option value="10">OCT</option>
+      <option value="11">NOV</option>
+      <option value="12">DEC</option>
+    </select>
+  </div>
+  <label class="col-md-2 control-label" for="selectbasic">Start Date.</label>
+  <div class="col-md-2">
+    <select id="startday" name="startday" required="required" class="form-control">
+     <script>
+     	for(var i = 1; i < 32; i++){
+		if(i<10)
+		{
+		i1 = "0" + i;
+		}
+		else{
+		i1 = i;
+		}
+     		document.write('<option value="'+i1+'">'+i1+'</option>')
+     	}
+     </script>
+    </select>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-2 control-label" for="selectbasic">End Yr.</label>
+  <div class="col-md-2">
+    <select id="endyr" name="endyr" required="required" class="form-control">
+      <script>
+      	var myDate = new Date();
+      	var endyr = myDate.getFullYear();
+      	for(var i = 1980; i < endyr+1; i++){
+      		document.write('<option value="'+i+'">'+i+'</option>');
+      	}
+      </script>
+    </select>
+  </div>
+  <label class="col-md-2 control-label" for="selectbasic">End Month</label>
+  <div class="col-md-2">
+    <select id="endmon" name="endmon" required="required" class="form-control">
+      <option value="01">JAN</option>
+      <option value="02">FEB</option>
+      <option value="03">MAR</option>
+      <option value="04">APR</option>
+      <option value="05">MAY</option>
+      <option value="06">JUN</option>
+      <option value="07">JUL</option>
+      <option value="08">AUG</option>
+      <option value="09">SEP</option>
+      <option value="10">OCT</option>
+      <option value="11">NOV</option>
+      <option value="12">DEC</option>
+    </select>
+  </div>
+  <label class="col-md-2 control-label" for="selectbasic">End Date.</label>
+  <div class="col-md-2">
+    <select id="endday" name="endday" required="required" class="form-control">
+     <script>
+     	for(var i = 01; i < 32; i++){
+		if(i<10)
+		{
+		i1 = "0" + i;
+		}
+		else{
+		i1 = i;
+		}
+     		document.write('<option value="'+i1+'">'+i1+'</option>')
+     	}
+     </script>
+    </select>
+  </div>
+</div>
+<hr>
+<h1 class="page-header">Parameters</h1>
+<tr colspan="2" align="left">
+                <td id="Param1"><input name="variable" value="cldprs" type="checkbox">CLDPRS = cloud top pressure<br><input name="variable" value="cldtmp" type="checkbox">CLDTMP = cloud top temperature<br><input name="variable" value="disph" type="checkbox">DISPH = zero plane displacement height<br><input name="variable" value="h1000" type="checkbox">H1000 = height at 1000 mb<br><input name="variable" value="h250" type="checkbox">H250 = height at 250 hpa<br><input name="variable" value="h500" type="checkbox">H500 = height at 500 hpa<br><input name="variable" value="h850" type="checkbox">H850 = height at 850 hpa<br><input name="variable" value="omega500" type="checkbox">OMEGA500 = omega at 500 hpa<br><input name="variable" value="pbltop" type="checkbox">PBLTOP = pbltop pressure<br><input name="variable" value="ps" type="checkbox">PS = surface pressure<br><input name="variable" value="q250" type="checkbox">Q250 = specific humidity at 250 hpa<br><input name="variable" value="q500" type="checkbox">Q500 = specific humidity at 500 hpa<br><input name="variable" value="q850" type="checkbox">Q850 = specific humidity at 850 hpa<br><input name="variable" value="qv10m" type="checkbox">QV10M = 10-meter specific humidity<br><input name="variable" value="qv2m" type="checkbox">QV2M = 2-meter specific humidity<br><input name="variable" value="slp" type="checkbox">SLP = sea level pressure<br><input name="variable" value="t10m" type="checkbox">T10M = 10-meter air temperature<br><input name="variable" value="t250" type="checkbox">T250 = air temperature at 250 hpa<br><input name="variable" value="t2m" type="checkbox">T2M = 2-meter air temperature<br><input name="variable" value="t2mdew" type="checkbox">T2MDEW = dew point temperature at 2 m<br><input name="variable" value="t2mwet" type="checkbox">T2MWET = wet bulb temperature at 2 m<br><input name="variable" value="t500" type="checkbox">T500 = air temperature at 500 hpa<br><input name="variable" value="t850" type="checkbox">T850 = air temperature at 850 hpa<br><input name="variable" value="to3" type="checkbox">TO3 = total column ozone<br><input name="variable" value="tox" type="checkbox">TOX = total column odd oxygen<br><input name="variable" value="tqi" type="checkbox">TQI = total precipitable ice water<br><input name="variable" value="tql" type="checkbox">TQL = total precipitable liquid water<br><input name="variable" value="tqv" type="checkbox">TQV = total precipitable water vapor<br><input name="variable" value="troppb" type="checkbox">TROPPB = tropopause pressure based on blended estimate<br><input name="variable" value="troppt" type="checkbox">TROPPT = tropopause pressure based on thermal estimate<br><input name="variable" value="troppv" type="checkbox">TROPPV = tropopause pressure based on epv estimate<br><input name="variable" value="tropq" type="checkbox">TROPQ = tropopause specific humidity using blended tropp estimate<br><input name="variable" value="tropt" type="checkbox">TROPT = tropopause temperature using blended tropp estimate<br><input name="variable" value="ts" type="checkbox">TS = surface skin temperature<br><input name="variable" value="u10m" type="checkbox">U10M = 10-meter eastward wind<br><input name="variable" value="u250" type="checkbox">U250 = eastward wind at 250 hpa<br><input name="variable" value="u2m" type="checkbox">U2M = 2-meter eastward wind<br><input name="variable" value="u500" type="checkbox">U500 = eastward wind at 500 hpa<br><input name="variable" value="u50m" type="checkbox">U50M = eastward wind at 50 meters<br><input name="variable" value="u850" type="checkbox">U850 = eastward wind at 850 hpa<br><input name="variable" value="v10m" type="checkbox">V10M = 10-meter northward wind<br><input name="variable" value="v250" type="checkbox">V250 = northward wind at 250 hpa<br><input name="variable" value="v2m" type="checkbox">V2M = 2-meter northward wind<br><input name="variable" value="v500" type="checkbox">V500 = northward wind at 500 hpa<br><input name="variable" value="v50m" type="checkbox">V50M = northward wind at 50 meters<br><input name="variable" value="v850" type="checkbox">V850 = northward wind at 850 hpa<br><input name="variable" value="zlcl" type="checkbox">ZLCL = lifting condensation level<br></td>
+      </tr><br>
+      
+      <div class="form-group">
+  <div class="col-md-12">
+    <button id="singlebutton" name="singlebutton" class="btn btn-primary" style="width: 84px;height: 38px;">Submit</button>
+  </div>
+</div>
+</form>
+<iframe width="0" height="0" border="0" name="dummyframe" id="dummyframe" style="border:none;">
+</iframe>
+                </div>
+            </div>
+		</div>
+    </div>
+
+</div>
+
+<!-- jQuery -->
+<script src="js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+
+<!-- Metis Menu Plugin JavaScript -->
+<script src="js/metisMenu.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="js/startmin.js"></script>
+
+</body>
+</html>

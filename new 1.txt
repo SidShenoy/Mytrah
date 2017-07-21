@@ -1,0 +1,51 @@
+https://goldsmr4.gesdisc.eosdis.nasa.gov/cgi-bin/OTF/HTTP_DpFileDownloadMERRA2.pl?DATASET=MERRA_DP&FCP_DIR=/ftp/private/tmp/&APPLICATION=SUBSET_MERRA2&FILTER=SUBSET_MERRA2&SUB_LONMIN=-180&SUB_LONMAX=180&SUB_LATMAX=90&SUB_LATMIN=-90&OUTPUT_FORMAT=nc4c&LOOKUPID_List=M2T1NXSLV&STARTYR=1980&STARTMON=01&STARTDAY=01&ENDYR=1980&ENDMON=12&ENDDAY=31&variable=ps&variable=t10m&variable=t2m&variable=u10m&variable=u2m&variable=u50m&variable=v10m&variable=v2m&variable=v50m&
+
+https://goldsmr4.gesdisc.eosdis.nasa.gov/cgi-bin/OTF/HTTP_DpFileDownloadMERRA2.pl?WGET_ID=1KPhpqsm&APPLICATION=SUBSET_MERRA2
+
+Second attempt
+
+https://goldsmr4.gesdisc.eosdis.nasa.gov/cgi-bin/OTF/HTTP_DpFileDownloadMERRA2.pl?DATASET=MERRA_DP&FCP_DIR=/ftp/private/tmp/&APPLICATION=SUBSET_MERRA2&FILTER=SUBSET_MERRA2&SUB_LONMIN=-180&SUB_LONMAX=180&SUB_LATMAX=90&SUB_LATMIN=-90&OUTPUT_FORMAT=nc4c&LOOKUPID_List=M2T1NXSLV&STARTYR=1980&STARTMON=01&STARTDAY=01&ENDYR=1980&ENDMON=12&ENDDAY=31&variable=ps&variable=t10m&variable=t2m&variable=u10m&variable=u2m&variable=u50m&variable=v10m&variable=v2m&variable=v50m&
+
+https://goldsmr4.gesdisc.eosdis.nasa.gov/cgi-bin/OTF/HTTP_DpFileDownloadMERRA2.pl?WGET_ID=9CaSA88U&APPLICATION=SUBSET_MERRA2
+
+
+This
+
+view-source:https://goldsmr4.gesdisc.eosdis.nasa.gov/cgi-bin/OTF/HTTP_DpFileDownloadMERRA2.pl?DATASET=MERRA_DP&FCP_DIR=/ftp/private/tmp/&APPLICATION=SUBSET_MERRA2&FILTER=SUBSET_MERRA2&SUB_LONMIN=-180&SUB_LONMAX=180&SUB_LATMAX=90&SUB_LATMIN=-90&OUTPUT_FORMAT=nc4c&LOOKUPID_List=M2T1NXSLV&STARTYR=1980&STARTMON=01&STARTDAY=01&ENDYR=1980&ENDMON=12&ENDDAY=31&variable=ps&variable=t10m&variable=t2m&variable=u10m&variable=u2m&variable=u50m&variable=v10m&variable=v2m&variable=v50m&
+
+wget_Q_2CRh4_
+
+After inputting new co-ordinates
+
+https://goldsmr4.gesdisc.eosdis.nasa.gov/cgi-bin/OTF/HTTP_DpFileDownloadMERRA2.pl?DATASET=MERRA_DP&FCP_DIR=/ftp/private/tmp/&APPLICATION=SUBSET_MERRA2&FILTER=SUBSET_MERRA2&SUB_LONMIN=66.094&SUB_LONMAX=95.625&SUB_LATMAX=37.266&SUB_LATMIN=4.922&OUTPUT_FORMAT=nc4c&LOOKUPID_List=M2T1NXSLV&STARTYR=1980&STARTMON=01&STARTDAY=01&ENDYR=1980&ENDMON=12&ENDDAY=31&variable=t500&variable=to3&variable=tox&
+
+wget --load-cookies C:\Users\Siddhanth\Documents\JSPProjectDocuments\parametersandstuff/.urs_cookies --save-cookies C:\Users\Siddhanth\Documents\JSPProjectDocuments\parametersandstuff/.urs_cookies --auth-no-challenge=on --keep-session-cookies --content-disposition -i wget_week1of1980.dat
+
+File names
+
+MERRA2_100.tavg1_2d_slv_Nx.19800101.SUB.nc4
+
+Link for final download of file asking for username and password
+
+https://urs.earthdata.nasa.gov/oauth/authorize/?scope=uid&app_type=401&client_id=e2WVk8Pw6weeLUKZYOxvTQ&response_type=code&redirect_uri=https%3A%2F%2Fgoldsmr4.gesdisc.eosdis.nasa.gov%2Fdata-redirect&state=aHR0cHM6Ly9nb2xkc21yNC5nZXNkaXNjLmVvc2Rpcy5uYXNhLmdvdi9kYWFjLWJpbi9PVEYvSFRUUF9zZXJ2aWNlcy5jZ2k%2FRklMRU5BTUU9JTJGZGF0YSUyRk1FUlJBMiUyRk0yVDFOWFNMVi41LjEyLjQlMkYxOTgwJTJGMDElMkZNRVJSQTJfMTAwLnRhdmcxXzJkX3Nsdl9OeC4xOTgwMDEwMS5uYzQmRk9STUFUPWJtTTBZeTgmQkJPWD0xOC4yODElMkM3My4xMjUlMkMyOC4xMjUlMkM4My42NzImTEFCRUw9TUVSUkEyXzEwMC50YXZnMV8yZF9zbHZfTnguMTk4MDAxMDEuU1VCLm5jNCZGTEFHUz0mU0hPUlROQU1FPU0yVDFOWFNMViZTRVJWSUNFPVNVQlNFVF9NRVJSQTImTEFZRVJTPSZWRVJTSU9OPTEuMDImVkFSSUFCTEVTPXF2MTBtJTJDc2xwJTJDdDJtJTJDdDJtZGV3
+
+For Input Stream
+
+					BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));
+					
+					String s;
+					
+					while((s = br.readLine())!=null)
+					{
+						System.out.print(s);
+					}
+			
+					System.out.println("End of this part");
+
+For next module, to rename nc4 to nc
+
+For next module to remove first character from all filenames
+
+REN *.* " *.*"
+FOR %v IN (*.*) DO REN "%v" %v
+
