@@ -16,6 +16,9 @@
 				String currenttime = " ";
 				int test=0;
 				
+				String locationOfWGET = "C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff";
+				
+				
 				try
 				{
 					DateFormat df = new SimpleDateFormat("HHmmss");
@@ -28,22 +31,22 @@
 					String lon = "77.5";
 					//String lat = request.getParameter("lat");
 					//String lon = request.getParameter("lon");
-					/*String str[] = request.getParameterValues("variable");
+					String str[] = request.getParameterValues("variable");
 					String startyr = request.getParameter("startyr");
 					String startmon = request.getParameter("startmon");
 					String startday = request.getParameter("startday");
 					String endyr = request.getParameter("endyr");
 					String endmon = request.getParameter("endmon");
 					String endday = request.getParameter("endday");
-					*/
 					
-					String str[] = {"cldprs","cldtmp","disph","h1000"};
+					/*String str[] = {"cldprs","cldtmp","disph","h1000"};
 					String startyr = "1980";
 					String startmon = "03";
 					String startday = "01";
 					String endyr = "1980";
 					String endmon = "03";
 					String endday = "05";
+					*/
 					
 					String param[] = {"cldprs","cldtmp","disph","h1000","h250","h500","h850","omega500","pbltop","ps","q250","q500","q850","qv10m","qv2m","slp","t10m","t250","t2m","t2mdew","t2mwet","t500","t850","to3","tox","tqi","tql","tqv","troppb","troppt","troppv","tropq","tropt","ts","u10m","u250","u2m","u500","u50m","u850","v10m","v250","v2m","v500","v50m","v850","zlcl"};
 		
@@ -213,7 +216,7 @@
 					Other details presented are merely for debugging purposes<br>
 					
 					<%
-					StringBuilder command = new StringBuilder("cmd /c cd \"C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff\" & wget \"https://goldsmr4.gesdisc.eosdis.nasa.gov/cgi-bin/OTF/HTTP_DpFileDownloadMERRA2.pl?DATASET=MERRA_DP&FCP_DIR=/ftp/private/tmp/&APPLICATION=SUBSET_MERRA2&FILTER=SUBSET_MERRA2&SUB_LONMIN=76.875&SUB_LONMAX=78.125&SUB_LATMAX=21&SUB_LATMIN=20&OUTPUT_FORMAT=nc4c&LOOKUPID_List=M2T1NXSLV&STARTYR="+startyr+"&STARTMON="+startmon+"&STARTDAY="+startday+"&ENDYR="+endyr+"&ENDMON="+endmon+"&ENDDAY="+endday+"&");
+					StringBuilder command = new StringBuilder("cmd /c cd \""+locationOfWGET+"\" & wget \"https://goldsmr4.gesdisc.eosdis.nasa.gov/cgi-bin/OTF/HTTP_DpFileDownloadMERRA2.pl?DATASET=MERRA_DP&FCP_DIR=/ftp/private/tmp/&APPLICATION=SUBSET_MERRA2&FILTER=SUBSET_MERRA2&SUB_LONMIN=76.875&SUB_LONMAX=78.125&SUB_LATMAX=21&SUB_LATMIN=20&OUTPUT_FORMAT=nc4c&LOOKUPID_List=M2T1NXSLV&STARTYR="+startyr+"&STARTMON="+startmon+"&STARTDAY="+startday+"&ENDYR="+endyr+"&ENDMON="+endmon+"&ENDDAY="+endday+"&");
 					
 					for(int i=0;i<str.length;i++)
 					{
@@ -231,7 +234,7 @@
 					
 					process.waitFor();
 				
-					File f = new File("C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff","yourfilename."+currenttime+".txt");
+					File f = new File(locationOfWGET,"yourfilename."+currenttime+".txt");
 					FileInputStream fis = new FileInputStream(f);
 					int length = fis.available();
 					%>
@@ -263,7 +266,7 @@
 					
 					//next 3 lines delete the yourfilename.currenttime.txt file
 					
-					command = new StringBuilder("cmd /c cd C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff & del /Q yourfilename."+currenttime+".txt");	
+					command = new StringBuilder("cmd /c cd "+locationOfWGET+" & del /Q yourfilename."+currenttime+".txt");	
 										
 					process = Runtime.getRuntime().exec(command.toString());
 							
@@ -277,7 +280,7 @@
 					StringBuilder command2 = new StringBuilder("https://goldsmr4.gesdisc.eosdis.nasa.gov/cgi-bin/OTF/HTTP_DpFileDownloadMERRA2.pl?WGET_ID=");
 					command2 = command2.append(wgetId).append("&APPLICATION=SUBSET_MERRA2");
 					
-					command = new StringBuilder("cmd /c cd \"C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff\" & wget -r \"");
+					command = new StringBuilder("cmd /c cd \""+locationOfWGET+"\" & wget -r \"");
 					command = command.append(command2).append("\" -O wget_week1of1980."+currenttime+".dat");
 					%>
 					
@@ -395,7 +398,7 @@
 												
 												out.println("Checking for presence of "+year+""+month+""+date+"."+presence+".nc");
 												
-												command = new StringBuilder("cmd /c cd C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff\\SomeFiles\\"+lat+"_"+lon+" &  dir /b /a-d | find \""+year+""+month+""+date+"."+presence+".nc\"");
+												command = new StringBuilder("cmd /c cd "+locationOfWGET+"SomeFiles\\"+lat+"_"+lon+" &  dir /b /a-d | find \""+year+""+month+""+date+"."+presence+".nc\"");
 									
 												process = Runtime.getRuntime().exec(command.toString());
 												
@@ -480,7 +483,7 @@
 												
 												out.println("Checking for presence of "+year+""+month+""+date+"."+presence+".nc");
 												
-												command = new StringBuilder("cmd /c cd C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff\\SomeFiles\\"+lat+"_"+lon+" &  dir /b /a-d | find \""+year+""+month+""+date+"."+presence+".nc\"");
+												command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+" &  dir /b /a-d | find \""+year+""+month+""+date+"."+presence+".nc\"");
 									
 												process = Runtime.getRuntime().exec(command.toString());
 												
@@ -521,9 +524,9 @@
 					
 					//code to create a new .dat file that conatins only links for the files not present and that need to be downloaded
 					
-					BufferedReader br = new BufferedReader(new FileReader(new File("C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff\\wget_week1of1980."+currenttime+".dat")));
+					BufferedReader br = new BufferedReader(new FileReader(new File(locationOfWGET+"\\wget_week1of1980."+currenttime+".dat")));
 					
-					BufferedWriter bw = new BufferedWriter(new FileWriter(new File("C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff\\wget_week1of1980da."+currenttime+".dat"))); 
+					BufferedWriter bw = new BufferedWriter(new FileWriter(new File(locationOfWGET+"\\wget_week1of1980da."+currenttime+".dat"))); 
 		
 					int linepos = 0;
 					int nooffilestodownload = 0;
@@ -553,7 +556,7 @@
 					
 					//the next 3 lines delete wget_week1of1980.currenttime.dat file
 					
-					command = new StringBuilder("cmd /c cd C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff & del /Q wget_week1of1980."+currenttime+".dat");	
+					command = new StringBuilder("cmd /c cd "+locationOfWGET+" & del /Q wget_week1of1980."+currenttime+".dat");	
 										
 					process = Runtime.getRuntime().exec(command.toString());
 							
@@ -565,7 +568,7 @@
 					
 					char c;
 					
-					command = new StringBuilder("cmd /c cd C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff\\SomeFiles\\"+lat+"_"+lon+" & dir /b /a-d | find \"MERRA2_100.tavg1_2d_slv_Nx\" | find /c /v \"\"");	
+					command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+" & dir /b /a-d | find \"MERRA2_100.tavg1_2d_slv_Nx\" | find /c /v \"\"");	
 								
 					process = Runtime.getRuntime().exec(command.toString());
 					
@@ -591,7 +594,7 @@
 					
 					while(countoffiles!=nooffilestodownload)
 					{
-					command = new StringBuilder("cmd /c cd \"C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff\" & wget --quiet -nc --user mounika --password Mytrah_123 --load-cookies \"./.urs_cookies\" --save-cookies \"./.urs_cookies\" --auth-no-challenge=on --keep-session-cookies --content-disposition -i wget_week1of1980da."+currenttime+".dat -P ./SomeFiles/"+lat+"_"+lon);
+					command = new StringBuilder("cmd /c cd \""+locationOfWGET+"\" & wget --quiet -nc --user mounika --password Mytrah_123 --load-cookies \"./.urs_cookies\" --save-cookies \"./.urs_cookies\" --auth-no-challenge=on --keep-session-cookies --content-disposition -i wget_week1of1980da."+currenttime+".dat -P ./SomeFiles/"+lat+"_"+lon);
 					
 					%>
 					
@@ -602,7 +605,7 @@
 					 
 					process.waitFor();
 					
-					command = new StringBuilder("cmd /c cd C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff\\SomeFiles\\"+lat+"_"+lon+" & dir /b /a-d | find \"MERRA2_100.tavg1_2d_slv_Nx\" | find /c /v \"\"");	
+					command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+" & dir /b /a-d | find \"MERRA2_100.tavg1_2d_slv_Nx\" | find /c /v \"\"");	
 								
 					process = Runtime.getRuntime().exec(command.toString());
 					
@@ -631,7 +634,7 @@
 					
 					//the next 3 lines delete the file wget_week1of1980da.currenttime.dat 
 					
-					command = new StringBuilder("cmd /c cd C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff & del /Q wget_week1of1980da."+currenttime+".dat");	
+					command = new StringBuilder("cmd /c cd "+locationOfWGET+" & del /Q wget_week1of1980da."+currenttime+".dat");	
 										
 					process = Runtime.getRuntime().exec(command.toString());
 							
@@ -639,7 +642,7 @@
 					
 					//code for conversion from .nc4 to nc and the concatenation of all .nc files into a single .nc file starts here
 					
-					command2 = new StringBuilder("powershell /c cd C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff\\SomeFiles\\"+lat+"_"+lon+" ; ncrcat ");
+					command2 = new StringBuilder("powershell /c cd "+locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+" ; ncrcat ");
 					
 					currentnoofdays = 0;
 					
@@ -742,7 +745,7 @@
 												
 												if(presenceOfFiles[currentnoofdays]==0)
 												{
-													command = new StringBuilder("cmd /c cd C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff\\SomeFiles\\"+lat+"_"+lon+" & ncks -3 MERRA2_100.tavg1_2d_slv_Nx."+year+""+month+""+date+".SUB.nc4 "+year+""+month+""+date+"."+presence+".nc");
+													command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+" & ncks -3 MERRA2_100.tavg1_2d_slv_Nx."+year+""+month+""+date+".SUB.nc4 "+year+""+month+""+date+"."+presence+".nc");
 										
 													process = Runtime.getRuntime().exec(command.toString());
 						
@@ -811,7 +814,7 @@
 												
 												if(presenceOfFiles[currentnoofdays]==0)
 												{
-													command = new StringBuilder("cmd /c cd C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff\\SomeFiles\\"+lat+"_"+lon+" & ncks -3 MERRA2_100.tavg1_2d_slv_Nx."+year+""+month+""+date+".SUB.nc4 "+year+""+month+""+date+"."+presence+".nc");
+													command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+" & ncks -3 MERRA2_100.tavg1_2d_slv_Nx."+year+""+month+""+date+".SUB.nc4 "+year+""+month+""+date+"."+presence+".nc");
 										
 													process = Runtime.getRuntime().exec(command.toString());
 						
@@ -834,7 +837,7 @@
 					
 					//the next 3 lines delete all .nc4 files that just got downloaded 
 					
-					command = new StringBuilder("cmd /c cd C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff\\SomeFiles\\"+lat+"_"+lon+" & del /Q *.nc4");	
+					command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+" & del /Q *.nc4");	
 										
 					process = Runtime.getRuntime().exec(command.toString());
 							
@@ -849,7 +852,7 @@
 					
 					out.println("latrange and lonrange are "+latmax+" "+latmin+" & "+lonmax+" "+lonmin+"-----------------");
 					
-					command = new StringBuilder("cmd /c cd C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff\\SomeFiles\\"+lat+"_"+lon+" & ncks -d lon,"+lonmin+","+lonmax+" -d lat,"+latmin+","+latmax+" 1980."+currenttime+".nc "+lat+"_"+lon+"."+currenttime+".nc");	
+					command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+" & ncks -d lon,"+lonmin+","+lonmax+" -d lat,"+latmin+","+latmax+" 1980."+currenttime+".nc "+lat+"_"+lon+"."+currenttime+".nc");	
 								
 					process = Runtime.getRuntime().exec(command.toString());
 					
@@ -857,13 +860,13 @@
 					
 					//the next 3 lines delete the file 1980.currenttime.nc
 					
-					command = new StringBuilder("cmd /c cd C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff\\SomeFiles\\"+lat+"_"+lon+" & del /Q 1980."+currenttime+".nc");	
+					command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+" & del /Q 1980."+currenttime+".nc");	
 										
 					process = Runtime.getRuntime().exec(command.toString());
 							
 					process.waitFor();
 					
-					command = new StringBuilder("cmd /c cd C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff\\SomeFiles\\"+lat+"_"+lon+" & copy "+lat+"_"+lon+"."+currenttime+".nc Final");	
+					command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+" & copy "+lat+"_"+lon+"."+currenttime+".nc Final");	
 								
 					process = Runtime.getRuntime().exec(command.toString());
 					
@@ -871,7 +874,7 @@
 					
 					//the next 3 lines delete the file lat_lon.currenttime.nc present in SomeFiles
 					
-					command = new StringBuilder("cmd /c cd C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff\\SomeFiles\\"+lat+"_"+lon+" & del /Q "+lat+"_"+lon+"."+currenttime+".nc");	
+					command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+" & del /Q "+lat+"_"+lon+"."+currenttime+".nc");	
 										
 					process = Runtime.getRuntime().exec(command.toString());
 							
@@ -879,7 +882,7 @@
 					
 					/*Code to create excel sheet from nc file starts here*/
 				
-					command = new StringBuilder("cmd /c cd C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff\\SomeFiles\\"+lat+"_"+lon+"\\Final & ncdump "+lat+"_"+lon+"."+currenttime+".nc >> testing1."+currenttime+".txt");	
+					command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+"\\Final & ncdump "+lat+"_"+lon+"."+currenttime+".nc >> testing1."+currenttime+".txt");	
 								
 					process = Runtime.getRuntime().exec(command.toString());
 					
@@ -887,7 +890,7 @@
 					
 					//the next 3 lines delete the file lat_lon.currenttime.nc present in Final
 					
-					command = new StringBuilder("cmd /c cd C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff\\SomeFiles\\"+lat+"_"+lon+"\\Final & del /Q "+lat+"_"+lon+"."+currenttime+".nc");	
+					command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+"\\Final & del /Q "+lat+"_"+lon+"."+currenttime+".nc");	
 										
 					process = Runtime.getRuntime().exec(command.toString());
 							
@@ -895,7 +898,7 @@
 					
 					//code to generate both excel files starts
 					
-					f = new File("C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff\\SomeFiles\\"+lat+"_"+lon+"\\Final\\testing1."+currenttime+".txt");
+					f = new File(locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+"\\Final\\testing1."+currenttime+".txt");
 					br = new BufferedReader(new FileReader(f));
 					String line;
 					StringBuilder parameter = new StringBuilder("");
@@ -972,7 +975,7 @@
 					
 					//the next 3 lines delete the file testing1.currenttime.txt
 					
-					command = new StringBuilder("cmd /c cd C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff\\SomeFiles\\"+lat+"_"+lon+"\\Final & del /Q testing1."+currenttime+".txt");	
+					command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+"\\Final & del /Q testing1."+currenttime+".txt");	
 										
 					process = Runtime.getRuntime().exec(command.toString());
 							
@@ -980,7 +983,7 @@
 					
 					//step 2 starts here
 					
-					FileOutputStream fos = new FileOutputStream(new File("C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff\\SomeFiles\\"+lat+"_"+lon+"\\Final\\FirstTest."+currenttime+".xlsx"));
+					FileOutputStream fos = new FileOutputStream(new File(locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+"\\Final\\FirstTest."+currenttime+".xlsx"));
 					workbook.write(fos);
 					fos.close();
 					out.println("FirstTest."+currenttime+".xlsx written successfully");
@@ -989,7 +992,7 @@
 						<br><br>
 					
 					<%
-					f = new File("C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff\\SomeFiles\\"+lat+"_"+lon+"\\Final\\FirstTest."+currenttime+".xlsx");
+					f = new File(locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+"\\Final\\FirstTest."+currenttime+".xlsx");
 					fis = new FileInputStream(f);
 					//Get the workbook instance for XLSX file 
 					workbook = new XSSFWorkbook(fis);
@@ -1394,7 +1397,7 @@
 					}
 					
 					//step 2 ends here
-					fos = new FileOutputStream(new File("C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff\\SomeFiles\\"+lat+"_"+lon+"\\Final\\FirstTest."+currenttime+".xlsx"));
+					fos = new FileOutputStream(new File(locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+"\\Final\\FirstTest."+currenttime+".xlsx"));
 					workbook.write(fos);
 					fos.close();
 					out.println("FirstTest."+currenttime+".xlsx written successfully");
@@ -1405,7 +1408,7 @@
 					<%
 					//code to copy spreadsheet named 'final' from 'FirstTest.'+currenttime+'.xlsx' into another excel file named 'FinalFirstTest.'+currenttime+'.xlsx'
 					
-						fis = new FileInputStream(new File("C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff\\SomeFiles\\"+lat+"_"+lon+"\\Final\\FirstTest."+currenttime+".xlsx"));
+						fis = new FileInputStream(new File(locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+"\\Final\\FirstTest."+currenttime+".xlsx"));
 						
 						//Get the workbook instance for XLS file 
 						workbook = new XSSFWorkbook(fis);
@@ -1471,13 +1474,13 @@
 						
 						//the next 3 lines delete the file FirstTest.currenttime.xlsx
 						
-						command = new StringBuilder("cmd /c cd C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff\\SomeFiles\\"+lat+"_"+lon+"\\Final & del /Q FirstTest."+currenttime+".xlsx");	
+						command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+"\\Final & del /Q FirstTest."+currenttime+".xlsx");	
 										
 						process = Runtime.getRuntime().exec(command.toString());
 							
 						process.waitFor();
 						
-						fos = new FileOutputStream(new File("C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff\\SomeFiles\\"+lat+"_"+lon+"\\Final\\FinalFirstTest."+currenttime+".xlsx"));
+						fos = new FileOutputStream(new File(locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+"\\Final\\FinalFirstTest."+currenttime+".xlsx"));
 						newworkbook.write(fos);
 						fos.close();
 						out.println("FinalFirstTest."+currenttime+".xlsx written successfully");

@@ -8,8 +8,9 @@
 		String fileName = request.getParameter("fileName");
 		String currenttime = request.getParameter("currenttime");
         String node = request.getParameter("node");
+		String locationOfWGET = "C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff";
 		
-		String filePath = "C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff\\SomeFiles\\"+node+"\\Final\\" + fileName;
+		String filePath = locationOfWGET+"\\SomeFiles\\"+node+"\\Final\\" + fileName;
         File downloadFile = new File(filePath);
         FileInputStream inStream = new FileInputStream(downloadFile);
          
@@ -50,7 +51,7 @@
         inStream.close();
         outStream.close();
 		
-		StringBuilder command = new StringBuilder("cmd /c cd C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff\\SomeFiles\\"+node+"\\Final & del /Q FinalFirstTest."+currenttime+".xlsx");	
+		StringBuilder command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFiles\\"+node+"\\Final & del /Q FinalFirstTest."+currenttime+".xlsx");	
 										
 		Process process = Runtime.getRuntime().exec(command.toString());
 							
