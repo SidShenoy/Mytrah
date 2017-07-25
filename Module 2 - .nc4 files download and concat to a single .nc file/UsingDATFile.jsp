@@ -8,16 +8,11 @@
 <br><br>
 <%@ page import="java.io.*,java.text.*,java.util.*,org.apache.poi.xssf.usermodel.*,org.apache.poi.ss.usermodel.*,org.apache.poi.ss.util.CellReference,javax.swing.JOptionPane"%>
 <%
-				//this is for downloading between latitudes 26.719N-19.512S and between longitudes 74.531W-83.496E
-				//further this is to download data from 01/01/1980 to 07/01/1980 i.e. first week of the year 1980
-				//this has been done due to memory constraints
-				
 				String finalexcelfile = " ";
 				String currenttime = " ";
 				int test=0;
 				
 				String locationOfWGET = "C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff";
-				
 				
 				try
 				{
@@ -1532,17 +1527,6 @@
 				}
 				
 %>
-
-	<!--<br><br>Your file is ready to be downloaded, click download!
-	<form method="GET" action="DownloadExcelFile.jsp" target="dummyframe">
-	<input name='fileName' value=<%= finalexcelfile %> type='text' readonly><br>
-	<input name='currenttime' value=<%= currenttime %> type='text' readonly><br>
-	<input name='submit' value='download' type='submit'>
-	</form>
-	<iframe width="0" height="0" border="0" name="dummyframe" id="dummyframe" style="border:none;">
-	</iframe>-->
 	
-	
-
 </body>
 </html>

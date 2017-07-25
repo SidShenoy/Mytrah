@@ -40,12 +40,15 @@ class ERATestingKeLiyeHai
 				String startday = "01";
 				String endyr = "1979";
 				String endmon = "01";
-				String endday = "05";
+				String endday = "01";
 				
-				double latmax = Double.parseDouble(lat) + 0.1;
-				double latmin = Double.parseDouble(lat) - 0.1;
-				double lonmax = Double.parseDouble(lon) + 0.1;
-				double lonmin = Double.parseDouble(lon) - 0.1;
+				String username = "f2015057@hyderabad.bits-pilani.ac.in";
+				String password = "lF5k3f";
+				
+				double latmax = Double.parseDouble(lat) + 0.5; //previously 0.1
+				double latmin = Double.parseDouble(lat) - 0.5; //previously 0.1
+				double lonmax = Double.parseDouble(lon) + 0.5; //previously 0.1
+				double lonmin = Double.parseDouble(lon) - 0.5; //previously 0.1
 				
 				String startDate = startyr+startmon+startday;
 				String endDate = endyr+endmon+endday;
@@ -149,18 +152,20 @@ class ERATestingKeLiyeHai
 						requestToBeSent.put("expver","1");	////
 						requestToBeSent.put("repres","sh");
 						requestToBeSent.put("levtype","sfc");////
-						requestToBeSent.put("param",paramToBeRetrieved.toString());////
+						//requestToBeSent.put("param",paramToBeRetrieved.toString());////
+						requestToBeSent.put("param","165.128");
 						requestToBeSent.put("time","00/06/12/18");////
 						requestToBeSent.put("step","0");	////
 						requestToBeSent.put("domain","G");
 						requestToBeSent.put("resol","AUTO");
-						requestToBeSent.put("area","42/66.75/5.25/100.5");////
+						requestToBeSent.put("area",latmax+"/"+lonmin+"/"+latmin+"/"+lonmax);////
 						requestToBeSent.put("grid","0.75/0.75");////
 						requestToBeSent.put("padding","0");
 						requestToBeSent.put("expect","ANY");
 						requestToBeSent.put("date",startDate+"/to/"+endDate);////
 						requestToBeSent.put("format","netcdf");////
-						requestToBeSent.put("target","C:/Users/Siddhanth/Documents/JspProjectDocuments/parametersandstuff/SomeFilesForERA/"+lat+"_"+lon+"/"+startDate+"_"+endDate+"."+presence+".nc");////
+						//requestToBeSent.put("target","C:/Users/Siddhanth/Documents/JspProjectDocuments/parametersandstuff/SomeFilesForERA/"+lat+"_"+lon+"/"+startDate+"_"+endDate+"."+presence+".grib");////
+						requestToBeSent.put("target","rightNow.nc");
 						
 						/*Map<String, String> env = System.getenv();
 						String home = env.get("HOME");*/
@@ -168,12 +173,48 @@ class ERATestingKeLiyeHai
 						System.out.println(requestToBeSent);
 							
 						
-							
-						server.retrieve(requestToBeSent);
+						try
+						{
+							server.retrieve(requestToBeSent);
+						}
+						catch(JSONException je)
+						{}
+						catch(Exception e)
+						{
+							System.out.println("An exception occurred, please retry again.");
+							return;
+						}
 						
-						System.out.println("Successfully RETRIEVED!!!");
+						System.out.println("Successfully RETRIEVED the request Id!!!");
 					}
 					
+					//reading the file in order to obtain the request id and then obtain the download page
+					File f = new File("C:\\Users\\Siddhanth\\Documents\\JspProjectDocuments\\parametersandstuff\\SomeFilesForERA\\"+"requestId.txt");
+					br = new BufferedReader(new FileReader(f));
+					String requestId = br.readLine();
+					String urlDownloadPage = "https://apps.ecmwf.int/auth/login/password/?back=http://apps.ecmwf.int/datasets/data/interim-full-daily/levtype=sfc/requests/netcdf/" + requestId + "&uid=" + username + "&password=" + password;
+					command = new StringBuilder("cmd /c cd C:\\Users\\Siddhanth\\Desktop\\phantomjs\\phantomjs-2.1.1-windows\\bin & phantomjs save_page.js \"" + urlDownloadPage + "\" >> C:\\Users\\Siddhanth\\Documents\\JspProjectDocuments\\parametersandstuff\\SomeFilesForERA\\"+lat+"_"+lon+"\\"+startDate+"_"+endDate+"."+presence+".html");	
+								
+					process = Runtime.getRuntime().exec(command.toString());
+					
+					process.waitFor();
+					
+					//from the downloaded "download page", we now read it and obtain the "download_link" for the .nc file and then download the .nc file
+					f = new File("C:\\Users\\Siddhanth\\Documents\\JspProjectDocuments\\parametersandstuff\\SomeFilesForERA\\"+lat+"_"+lon+"\\"+startDate+"_"+endDate+"."+presence+".html");
+					br = new BufferedReader(new FileReader(f));
+					String downloadLink;
+					
+					while(!(downloadLink = br.readLine()).contains("class=\"download_link\""));
+					{}
+					
+					int index = downloadLink.indexOf("class=\"download_link\"");
+					downloadLink = downloadLink.substring(index+31,index+150);
+					
+					command = new StringBuilder("cmd /c cd C:\\Users\\Siddhanth\\Documents\\JspProjectDocuments\\parametersandstuff & wget -O SomeFilesForERA\\"+lat+"_"+lon+"\\"+startDate+"_"+endDate+"."+presence+".nc "+downloadLink);
+					
+					process = Runtime.getRuntime().exec(command.toString());
+					
+					process.waitFor();
 					
 					command = new StringBuilder("cmd /c cd C:\\Users\\Siddhanth\\Documents\\JspProjectDocuments\\parametersandstuff\\SomeFilesForERA\\"+lat+"_"+lon+" & ncks -d longitude,"+lonmin+","+lonmax+" -d latitude,"+latmin+","+latmax+" "+startDate+"_"+endDate+"."+presence+".nc "+lat+"_"+lon+"."+currenttime+".nc");	
 								
@@ -197,7 +238,7 @@ class ERATestingKeLiyeHai
 					
 					//code to get scale_factors and add_offsets starts for all parameters here
 					
-					File f = new File("C:\\Users\\Siddhanth\\Documents\\JspProjectDocuments\\parametersandstuff\\SomeFilesForERA\\"+lat+"_"+lon+"\\Final\\testing1."+currenttime+".txt");
+					f = new File("C:\\Users\\Siddhanth\\Documents\\JspProjectDocuments\\parametersandstuff\\SomeFilesForERA\\"+lat+"_"+lon+"\\Final\\testing1."+currenttime+".txt");
 					br = new BufferedReader(new FileReader(f));
 					String line;
 					int number_of_parameters = str.length;

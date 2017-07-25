@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>MEERA2 | ERA Mytrah</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/sb-admin.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="css/plugins/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" language="javascript" src="js/jquery.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    </script>
+</head>
+
+<body>
+
+    <!-- Form Step Mover JavaScript -->
+    <script src="js/step_mover.js"></script>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>-->
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-ex1-collapse" aria-expanded="false" aria-controls="navbar">
+        			<span class="sr-only">Toggle navigation</span>
+        			<span class="icon-bar"></span>
+        			<span class="icon-bar"></span>
+        			<span class="icon-bar"></span>
+    			</button>
+
+                <a class="navbar-brand" href="index.html"><strong>Mytrah</strong></a>
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Options <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                        </li>
+                        <li class="divider"></li>
+
+                        <li class="">
+                            <a href="index.html"><i class="fa fa-fw fa-edit"></i> MEERA2</a>
+                        </li>
+                        <li class="">
+                            <a href="era.html"> <i class="fa fa-fw fa-edit"></i> ERA2</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+
+                            <li class="divider"></li>
+                            <li class="divider"></li>
+                            <li>
+                                <center><i class="fa fa-fw fa-copyright"></i> Mytrah
+                                    <script type="text/javascript">
+                                        var cur = 2016;
+                                        var year = new Date();
+                                        if (cur == year.getFullYear()) year = year.getFullYear();
+                                        else year = cur + ' - ' + year.getFullYear();
+                                        document.write(year);
+                                    </script>
+                                </center>
+                            </li>
+
+                    </ul>
+                    <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+                    <div class="collapse navbar-collapse navbar-ex1-collapse">
+                        <ul class="nav navbar-nav side-nav">
+                            <li class="">
+                                <a href="index.html"><i class="fa fa-fw fa-edit"></i> MEERA2</a>
+                            </li>
+                            <li class="divider"></li>
+                            <!-- <li>
+                        <a href="currentdatabase.jsp"><i class="fa fa-fw fa-database"></i> Current Database</a>
+                    </li> -->
+                            <li class="active">
+                                <a href="era.html"> <i class="fa fa-fw fa-edit"></i> ERA</a>
+                            </li>
+
+
+                            <li>
+                                <div class="col-xs-offset-2">
+                                    <center><i class="fa fa-fw fa-copyright"></i> Mytrah &nbsp;&nbsp;&nbsp;
+                                        <script type="text/javascript">
+                                            var cur = 2016;
+                                            var year = new Date();
+                                            if (cur == year.getFullYear()) year = year.getFullYear();
+                                            else year = cur + ' - ' + year.getFullYear();
+                                            document.write(year);
+                                        </script>
+                                    </center>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+        </nav>
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            ERA <small>Mytrah</small>
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-dashboard"></i> <a href="index.html">ERA</a>
+                            </li>
+                            <li class="active">
+                                <i class="fa fa-edit"></i> Data Entry
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- #################### -->
+
+                <div class="container-fluid">
+                    <div class="row form-group">
+                        <div class="col-lg-12">
+                            <ul class="nav nav-pills nav-justified thumbnail setup-panel" style="font-size:11px">
+                                <li class="active">
+                                    <a href="#step-1">
+                                        <h4 class="list-group-item-heading" style="font-size:20px">Site Details</h4>
+
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="row setup-content" id="step-1">
+                    <div class="col-lg-12">
+                        <div class="col-md-12 well text-center">
+                            <h1>
+                                <font size="4"></font>
+                            </h1>
+
+                            <!-- <form> -->
+
+                            <div class="container col-xs-12">
+                                <div class="row clearfix">
+                                    <div class="col-xs-12 column">
+                                        <div class="row">
+                                            <center>
+
+                                                <table class="table table-bordered">
+                                                    <tr>
+                                                        <td>
+                                                            <center><label><font size="4">STEP 1</font><br><font size="6"><a href="./map.html" target="_blank">Click Here for MAP</a></font></label></center>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <div class="form-group">
+                                                    <br>
+                                                    <div class="table-responsive">
+                                                        <table class="table table-bordered">
+
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>
+                                                                        <font size="4">PARAMETER</font>
+                                                                    </th>
+                                                                    <th>
+                                                                        <font size="4">VALUE</font>
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+
+                                                            <tbody>
+
+
+                                                                <form action="#" method="POST" class="container-fluid">
+
+                                                                    <tr>
+                                                                        <td>LATITUDE</td>
+                                                                        <td>
+                                                                            <input class="form-control" type="text" name="latitude" id="" autocomplete="off" placeholder="Latitude">
+                                                                        </td>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                        <td>LONGITUDE</td>
+                                                                        <td>
+                                                                            <input class="form-control" type="text" name="latitude" id="" autocomplete="off" placeholder="LONGITUDE">
+                                                                        </td>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                        <td>START DATE <span class="label label-primary" style="font-size: 10px;text-align:center;">Please check input format</span>
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="text" id="styear" name="date_date_range" required="required" placeholder="yyyy-mm-dd" class="form-control">
+                                                                        </td>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                        <td>END YEAR <span class="label label-primary" style="font-size: 10px;text-align:center;">Please check input format</span></td>
+                                                                        <td>
+                                                                            <input type="text" id="styear" name="date_date_range" required="required" placeholder="yyyy-mm-dd" class="form-control">
+                                                                        </td>
+                                                                    </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <table class="table table-bordered">
+                                                            <h2>Time</h2>
+                                                            <h4><span class="label label-danger" style="font-size: 10px;text-align:center;">Cannot be edited. Just to confirm user.</span></h4>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td><input type="checkbox" checked disabled name="time" value="00:00:00"><span> 00:00:00</span></td>
+                                                                    <td><input type="checkbox" checked disabled name="time" value="06:00:00"><span> 06:00:00</span></td>
+                                                                    <td><input type="checkbox" checked disabled name="time" value="12:00:00"><span> 12:00:00</span></td>
+                                                                    <td><input type="checkbox" checked disabled name="time" value="18:00:00"><span> 18:00:00</span></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <table class="table table-bordered">
+                                                            <h2>Step</h2>
+                                                            <h4><span class="label label-danger" style="font-size: 10px;text-align:center;">Cannot be edited. Just to confirm user.</span></h4 <tbody>
+                                                            <tr>
+                                                                <td><input type="checkbox" checked disabled name="step" value="0"><span> 0</span></td>
+                                                                <td><input type="checkbox" disabled name="step" value="3"><span> 3</span></td>
+                                                                <td><input type="checkbox" disabled name="step" value="6"><span> 6</span></td>
+                                                                <td><input type="checkbox" disabled name="step" value="9"><span> 9</span></td>
+                                                                <td><input type="checkbox" disabled name="step" value="12"><span> 12</span></td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+
+                                                        <table class="table table-bordered">
+                                                            <tbody>
+                                                                <h2> Parameters</h2>
+                                                                <tr colspan="2" align="left">
+                                                                    <td><input type="checkbox" name="param" value="168.128">
+                                                                        <span>2 metre dewpoint temperature</span><br>
+                                                                        <input type="checkbox" name="param" value="167.128">
+                                                                        <span>2 metre temperature</span><br>
+                                                                        <input type="checkbox" name="param" value="165.128">
+                                                                        <span>10 metre U wind component</span><br>
+
+                                                                        <input type="checkbox" name="param" value="166.128">
+                                                                        <span>10 metre V wind component</span><br>
+
+                                                                        <input type="checkbox" name="param" value="174.128">
+                                                                        <span>Albedo</span><br>
+
+                                                                        <input type="checkbox" name="param" value="148.128">
+                                                                        <span>Charnock</span><br>
+
+                                                                        <input type="checkbox" name="param" value="188.128">
+                                                                        <span>High cloud cover</span><br>
+
+                                                                        <input type="checkbox" name="param" value="35.128">
+                                                                        <span>Ice temperature layer 1</span><br>
+
+                                                                        <input type="checkbox" name="param" value="36.128">
+                                                                        <span>Ice temperature layer 2</span><br>
+
+                                                                        <input type="checkbox" name="param" value="37.128">
+                                                                        <span>Ice temperature layer 3</span><br>
+
+                                                                        <input type="checkbox" name="param" value="38.128">
+                                                                        <span>Ice temperature layer 4</span><br>
+
+                                                                        <input type="checkbox" name="param" value="234.128">
+                                                                        <span>Logarithm of surface roughness length for heat</span><br>
+
+                                                                        <input type="checkbox" name="param" value="186.128">
+                                                                        <span>Low cloud cover</span><br>
+
+                                                                        <input type="checkbox" name="param" value="151.128">
+                                                                        <span>Mean sea level pressure</span><br>
+
+                                                                        <input type="checkbox" name="param" value="230.140">
+                                                                        <span>Mean wave direction</span><br>
+
+                                                                        <input type="checkbox" name="param" value="232.140">
+                                                                        <span>Mean wave period</span><br>
+
+                                                                        <input type="checkbox" name="param" value="187.128">
+                                                                        <span>Medium cloud cover</span><br>
+
+                                                                        <input type="checkbox" name="param" value="34.128">
+                                                                        <span>Sea surface temperature</span><br>
+
+                                                                        <input type="checkbox" name="param" value="31.128">
+                                                                        <span>Sea-ice cover</span><br>
+
+                                                                        <input type="checkbox" name="param" value="229.140">
+                                                                        <span>Significant height of combined wind waves and swell</span><br>
+
+                                                                        <input type="checkbox" name="param" value="198.128">
+                                                                        <span>Skin reservoir content</span><br>
+
+                                                                        <input type="checkbox" name="param" value="235.128">
+                                                                        <span>Skin temperature</span><br>
+
+                                                                        <input type="checkbox" name="param" value="32.128">
+                                                                        <span>Snow albedo</span><br>
+
+                                                                        <input type="checkbox" name="param" value="33.128">
+                                                                        <span>Snow density</span><br>
+
+                                                                        <input type="checkbox" name="param" value="141.128">
+                                                                        <span>Snow depth</span><br>
+
+                                                                        <input type="checkbox" name="param" value="139.128">
+                                                                        <span>Soil temperature level 1</span><br>
+
+                                                                        <input type="checkbox" name="param" value="170.128">
+                                                                        <span>Soil temperature level 2</span><br>
+
+                                                                        <input type="checkbox" name="param" value="183.128">
+                                                                        <span>Soil temperature level 3</span><br>
+
+                                                                        <input type="checkbox" name="param" value="236.128">
+                                                                        <span>Soil temperature level 4</span><br>
+
+                                                                        <input type="checkbox" name="param" value="134.128">
+                                                                        <span>Surface pressure</span><br>
+
+                                                                        <input type="checkbox" name="param" value="173.128">
+                                                                        <span>Surface roughness</span><br>
+
+                                                                        <input type="checkbox" name="param" value="238.128">
+                                                                        <span>Temperature of snow layer</span><br>
+
+                                                                        <input type="checkbox" name="param" value="164.128">
+                                                                        <span>Total cloud cover</span><br>
+
+                                                                        <input type="checkbox" name="param" value="206.128">
+                                                                        <span>Total column ozone</span><br>
+
+                                                                        <input type="checkbox" name="param" value="136.128">
+                                                                        <span>Total column water</span><br>
+
+                                                                        <input type="checkbox" name="param" value="137.128">
+                                                                        <span>Total column water vapour</span><br>
+
+                                                                        <input type="checkbox" name="param" value="57.162">
+                                                                        <span>Vertical integral of cloud frozen water</span><br>
+
+                                                                        <input type="checkbox" name="param" value="56.162">
+                                                                        <span>Vertical integral of cloud liquid water</span><br>
+
+                                                                        <input type="checkbox" name="param" value="80.162">
+                                                                        <span>Vertical integral of divergence of cloud frozen water flux</span><br>
+
+                                                                        <input type="checkbox" name="param" value="79.162">
+                                                                        <span>Vertical integral of divergence of cloud liquid water flux</span><br>
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="checkbox" name="param" value="85.162">
+                                                                        <span>Vertical integral of divergence of geopotential flux</span><br>
+
+                                                                        <input type="checkbox" name="param" value="82.162">
+                                                                        <span>Vertical integral of divergence of kinetic energy flux</span><br>
+
+                                                                        <input type="checkbox" name="param" value="81.162">
+                                                                        <span>Vertical integral of divergence of mass flux</span><br>
+
+                                                                        <input type="checkbox" name="param" value="84.162">
+                                                                        <span>Vertical integral of divergence of moisture flux</span><br>
+
+                                                                        <input type="checkbox" name="param" value="87.162">
+                                                                        <span>Vertical integral of divergence of ozone flux</span><br>
+
+                                                                        <input type="checkbox" name="param" value="83.162">
+                                                                        <span>Vertical integral of divergence of thermal energy flux</span><br>
+
+                                                                        <input type="checkbox" name="param" value="86.162">
+                                                                        <span>Vertical integral of divergence of total energy flux</span><br>
+
+                                                                        <input type="checkbox" name="param" value="90.162">
+                                                                        <span>Vertical integral of eastward cloud frozen water flux</span><br>
+
+                                                                        <input type="checkbox" name="param" value="88.162">
+                                                                        <span>Vertical integral of eastward cloud liquid water flux</span><br>
+
+                                                                        <input type="checkbox" name="param" value="73.162">
+                                                                        <span>Vertical integral of eastward geopotential flux</span><br>
+
+                                                                        <input type="checkbox" name="param" value="69.162">
+                                                                        <span>Vertical integral of eastward heat flux</span><br>
+
+                                                                        <input type="checkbox" name="param" value="67.162">
+                                                                        <span>Vertical integral of eastward kinetic energy flux</span><br>
+
+                                                                        <input type="checkbox" name="param" value="65.162">
+                                                                        <span>Vertical integral of eastward mass flux</span><br>
+
+                                                                        <input type="checkbox" name="param" value="77.162">
+                                                                        <span>Vertical integral of eastward ozone flux</span><br>
+
+                                                                        <input type="checkbox" name="param" value="75.162">
+                                                                        <span>Vertical integral of eastward total energy flux</span><br>
+
+                                                                        <input type="checkbox" name="param" value="71.162">
+                                                                        <span>Vertical integral of eastward water vapour flux</span><br>
+
+                                                                        <input type="checkbox" name="param" value="64.162">
+                                                                        <span>Vertical integral of energy conversion</span><br>
+
+                                                                        <input type="checkbox" name="param" value="59.162">
+                                                                        <span>Vertical integral of kinetic energy</span><br>
+
+                                                                        <input type="checkbox" name="param" value="53.162">
+                                                                        <span>Vertical integral of mass of atmosphere</span><br>
+
+                                                                        <input type="checkbox" name="param" value="92.162">
+                                                                        <span>Vertical integral of mass tendency</span><br>
+
+                                                                        <input type="checkbox" name="param" value="91.162">
+                                                                        <span>Vertical integral of northward cloud frozen water flux</span><br>
+
+                                                                        <input type="checkbox" name="param" value="89.162">
+                                                                        <span>Vertical integral of northward cloud liquid water flux</span><br>
+
+                                                                        <input type="checkbox" name="param" value="74.162">
+                                                                        <span>Vertical integral of northward geopotential flux</span><br>
+
+                                                                        <input type="checkbox" name="param" value="70.162">
+                                                                        <span>Vertical integral of northward heat flux</span><br>
+
+                                                                        <input type="checkbox" name="param" value="68.162">
+                                                                        <span>Vertical integral of northward kinetic energy flux</span><br>
+
+                                                                        <input type="checkbox" name="param" value="66.162">
+                                                                        <span>Vertical integral of northward mass flux</span><br>
+
+                                                                        <input type="checkbox" name="param" value="78.162">
+                                                                        <span>Vertical integral of northward ozone flux</span><br>
+
+                                                                        <input type="checkbox" name="param" value="76.162">
+                                                                        <span>Vertical integral of northward total energy flux</span><br>
+
+                                                                        <input type="checkbox" name="param" value="72.162">
+                                                                        <span>Vertical integral of northward water vapour flux</span><br>
+
+                                                                        <input type="checkbox" name="param" value="58.162">
+                                                                        <span>Vertical integral of ozone</span><br>
+
+                                                                        <input type="checkbox" name="param" value="61.162">
+                                                                        <span>Vertical integral of potential+internal energy</span><br>
+
+                                                                        <input type="checkbox" name="param" value="62.162">
+                                                                        <span>Vertical integral of potential+internal+latent energy</span><br>
+
+                                                                        <input type="checkbox" name="param" value="54.162">
+                                                                        <span>Vertical integral of temperature</span><br>
+
+                                                                        <input type="checkbox" name="param" value="60.162">
+                                                                        <span>Vertical integral of thermal energy</span><br>
+
+                                                                        <input type="checkbox" name="param" value="63.162">
+                                                                        <span>Vertical integral of total energy</span><br>
+
+                                                                        <input type="checkbox" name="param" value="55.162">
+                                                                        <span>Vertical integral of water vapour</span><br>
+
+                                                                        <input type="checkbox" name="param" value="39.128">
+                                                                        <span>Volumetric soil water layer 1</span><br>
+
+                                                                        <input type="checkbox" name="param" value="40.128">
+                                                                        <span>Volumetric soil water layer 2</span><br>
+
+                                                                        <input type="checkbox" name="param" value="41.128">
+                                                                        <span>Volumetric soil water layer 3</span><br>
+
+                                                                        <input type="checkbox" name="param" value="42.128">
+                                                                        <span>Volumetric soil water layer 4</span><br>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+
+                                                    <!-- <p class="help-block"><br><b>DO NOT FORGET TO SUBMIT AND <strong>UPLOAD</strong>.</b><br>Any empty field will be assumed as NULL / ZERO(0)<br><br></p> -->
+                                                    <button type="submit" id="submit" class="btn btn-success btn-md">SUBMIT</button>
+                                                </div>
+
+                                            </center>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <!-- </form> -->
+
+                            <!--<button id="activate-step-2" class="btn btn-primary btn-md">Next</button>-->
+                        </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script language="javascript" src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script language="javascript" src="js/bootstrap.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script language="javascript" src="js/plugins/morris/raphael.min.js"></script>
+    <script language="javascript" src="js/plugins/morris/morris.min.js"></script>
+    <script language="javascript" src="js/plugins/morris/morris-data.js"></script>
+
+
+
+</body>
+
+</html>
