@@ -13,8 +13,8 @@
 				//this has been done due to memory constraints
 				
 				
-				/*String lat = "15";
-				String lon = "76.5";
+				String lat = request.getParameter("lat");
+				String lon = request.getParameter("lon");
 				String str[] = request.getParameterValues("variable");
 				String startyr = request.getParameter("startyr");
 				String startmon = request.getParameter("startmon");
@@ -22,9 +22,9 @@
 				String endyr = request.getParameter("endyr");
 				String endmon = request.getParameter("endmon");
 				String endday = request.getParameter("endday");
-				*/
 				
-				String lat = "16.5";
+				
+				/*String lat = "16.5";
 				String lon = "78";
 				//String str[] = {"134.128","165.128","166.128","167.128"};
 				String str[] = {"167.128","165.128","166.128","134.128"};
@@ -34,6 +34,7 @@
 				String endyr = "1979";
 				String endmon = "01";
 				String endday = "05";
+				*/
 				
 				String username = "f2015057@hyderabad.bits-pilani.ac.in";
 				String password = "lF5k3f";
@@ -166,7 +167,7 @@
 						
 						out.println(requestToBeSent);
 							
-						
+						System.out.println("downloadNeeded = "+downloadNeeded + " for " + start_Date+"_"+end_Date+"."+presence+".nc");
 							
 						try
 						{
@@ -177,6 +178,7 @@
 						catch(Exception e)
 						{
 							System.out.println("An exception occurred, please retry again.");
+							System.out.println(e);
 							return;
 						}
 						
@@ -893,7 +895,7 @@
 									
 									<script>
 									alert("The file you are about to download has some parameters not used in any formula! Such parameters are simply appended at the end of the columns with formulas. After you download this excel file it will be deleted from the server. Click ok to download.");
-									var loc="DownloadExcelFile.jsp?fileName=<%= finalexcelfile%>&currenttime=<%= currenttime %>&node=<%=node %>";
+									var loc="DownloadExcelFileEra.jsp?fileName=<%= finalexcelfile%>&currenttime=<%= currenttime %>&node=<%=node %>";
 									window.location = loc;
 									</script>
 									
@@ -912,7 +914,7 @@
 							
 							<script>
 							alert("After you download this excel file it will be deleted from the server. Click ok to download.");
-							var loc="DownloadExcelFile.jsp?fileName=<%= finalexcelfile%>&currenttime=<%= currenttime %>&node=<%=node %>";
+							var loc="DownloadExcelFileEra.jsp?fileName=<%= finalexcelfile%>&currenttime=<%= currenttime %>&node=<%=node %>";
 							window.location = loc;
 							</script>
 							
@@ -932,7 +934,7 @@
 %>
 
 	<!--<br><br>Your file is ready to be downloaded, click download!
-	<form method="GET" action="DownloadExcelFile.jsp" target="dummyframe">
+	<form method="GET" action="DownloadExcelFileEra.jsp" target="dummyframe">
 	<input name='fileName' value=<%= finalexcelfile %> type='text' readonly><br>
 	<input name='currenttime' value=<%= currenttime %> type='text' readonly><br>
 	<input name='submit' value='download' type='submit'>

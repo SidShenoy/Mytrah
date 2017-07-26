@@ -44,6 +44,7 @@ class ERATestingKeLiyeHai
 				
 				String username = "f2015057@hyderabad.bits-pilani.ac.in";
 				String password = "lF5k3f";
+				String locationOfWGET = "C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff";
 				
 				double latmax = Double.parseDouble(lat) + 0.5; //previously 0.1
 				double latmin = Double.parseDouble(lat) - 0.5; //previously 0.1
@@ -112,7 +113,7 @@ class ERATestingKeLiyeHai
 				
 				try
 				{
-					StringBuilder command = new StringBuilder("cmd /c cd C:\\Users\\Siddhanth\\Documents\\JspProjectDocuments\\parametersandstuff\\SomeFilesForERA\\"+lat+"_"+lon+" &  dir /b /a-d | find \""+start_Date+"_"+end_Date+"."+presence+".nc\"");
+					StringBuilder command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFilesForERA\\"+lat+"_"+lon+" &  dir /b /a-d | find \""+start_Date+"_"+end_Date+"."+presence+".nc\"");
 									
 					Process process = Runtime.getRuntime().exec(command.toString());
 											
@@ -190,18 +191,18 @@ class ERATestingKeLiyeHai
 					
 					
 					//reading the file in order to obtain the request id and then obtain the download page
-					f = new File("C:\\Users\\Siddhanth\\Documents\\JspProjectDocuments\\parametersandstuff\\SomeFilesForERA\\"+"requestId.txt");
+					f = new File(locationOfWGET+"\\SomeFilesForERA\\"+"requestId.txt");
 					br = new BufferedReader(new FileReader(f));
 					String requestId = br.readLine();
 					String urlDownloadPage = "https://apps.ecmwf.int/auth/login/password/?back=http://apps.ecmwf.int/datasets/data/interim-full-daily/levtype=sfc/requests/netcdf/" + requestId + "&uid=" + username + "&password=" + password;
-					command = new StringBuilder("cmd /c cd C:\\Users\\Siddhanth\\Desktop\\phantomjs\\phantomjs-2.1.1-windows\\bin & phantomjs save_page.js \"" + urlDownloadPage + "\" >> C:\\Users\\Siddhanth\\Documents\\JspProjectDocuments\\parametersandstuff\\SomeFilesForERA\\"+lat+"_"+lon+"\\"+start_Date+"_"+end_Date+"."+presence+".html");	
+					command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\phantomjs\\phantomjs-2.1.1-windows\\bin & phantomjs save_page.js \"" + urlDownloadPage + "\" >> "+locationOfWGET+"\\SomeFilesForERA\\"+lat+"_"+lon+"\\"+start_Date+"_"+end_Date+"."+presence+".html");	
 								
 					process = Runtime.getRuntime().exec(command.toString());
 					
 					process.waitFor();
 					
 					//from the downloaded "download page", we now read it and obtain the "download_link" for the .nc file and then download the .nc file
-					f = new File("C:\\Users\\Siddhanth\\Documents\\JspProjectDocuments\\parametersandstuff\\SomeFilesForERA\\"+lat+"_"+lon+"\\"+start_Date+"_"+end_Date+"."+presence+".html");
+					f = new File(locationOfWGET+"\\SomeFilesForERA\\"+lat+"_"+lon+"\\"+start_Date+"_"+end_Date+"."+presence+".html");
 					br = new BufferedReader(new FileReader(f));
 					String downloadLink;
 					
@@ -211,7 +212,7 @@ class ERATestingKeLiyeHai
 					int index = downloadLink.indexOf("class=\"download_link\"");
 					downloadLink = downloadLink.substring(index+31,index+150);
 					
-					command = new StringBuilder("cmd /c cd C:\\Users\\Siddhanth\\Documents\\JspProjectDocuments\\parametersandstuff & wget -O SomeFilesForERA\\"+lat+"_"+lon+"\\"+start_Date+"_"+end_Date+"."+presence+".nc "+downloadLink);
+					command = new StringBuilder("cmd /c cd "+locationOfWGET+" & wget -O SomeFilesForERA\\"+lat+"_"+lon+"\\"+start_Date+"_"+end_Date+"."+presence+".nc "+downloadLink);
 					
 					process = Runtime.getRuntime().exec(command.toString());
 					
@@ -219,19 +220,19 @@ class ERATestingKeLiyeHai
 					
 					}
 					
-					command = new StringBuilder("cmd /c cd C:\\Users\\Siddhanth\\Documents\\JspProjectDocuments\\parametersandstuff\\SomeFilesForERA\\"+lat+"_"+lon+" & ncks -d longitude,"+lonmin+","+lonmax+" -d latitude,"+latmin+","+latmax+" "+start_Date+"_"+end_Date+"."+presence+".nc "+lat+"_"+lon+"."+currenttime+".nc");	
+					command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFilesForERA\\"+lat+"_"+lon+" & ncks -d longitude,"+lonmin+","+lonmax+" -d latitude,"+latmin+","+latmax+" "+start_Date+"_"+end_Date+"."+presence+".nc "+lat+"_"+lon+"."+currenttime+".nc");	
 								
 					process = Runtime.getRuntime().exec(command.toString());
 					
 					process.waitFor();
 					
-					command = new StringBuilder("cmd /c cd C:\\Users\\Siddhanth\\Documents\\JspProjectDocuments\\parametersandstuff\\SomeFilesForERA\\"+lat+"_"+lon+" & copy "+lat+"_"+lon+"."+currenttime+".nc Final");	
+					command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFilesForERA\\"+lat+"_"+lon+" & copy "+lat+"_"+lon+"."+currenttime+".nc Final");	
 								
 					process = Runtime.getRuntime().exec(command.toString());
 					
 					process.waitFor();
 					
-					command = new StringBuilder("cmd /c cd C:\\Users\\Siddhanth\\Documents\\JspProjectDocuments\\parametersandstuff\\SomeFilesForERA\\"+lat+"_"+lon+"\\Final & ncdump "+lat+"_"+lon+"."+currenttime+".nc >> testing1."+currenttime+".txt");	
+					command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFilesForERA\\"+lat+"_"+lon+"\\Final & ncdump "+lat+"_"+lon+"."+currenttime+".nc >> testing1."+currenttime+".txt");	
 								
 					process = Runtime.getRuntime().exec(command.toString());
 					
@@ -241,7 +242,7 @@ class ERATestingKeLiyeHai
 					
 					//code to get scale_factors and add_offsets starts for all parameters here
 					
-					f = new File("C:\\Users\\Siddhanth\\Documents\\JspProjectDocuments\\parametersandstuff\\SomeFilesForERA\\"+lat+"_"+lon+"\\Final\\testing1."+currenttime+".txt");
+					f = new File(locationOfWGET+"\\SomeFilesForERA\\"+lat+"_"+lon+"\\Final\\testing1."+currenttime+".txt");
 					br = new BufferedReader(new FileReader(f));
 					String line;
 					int number_of_parameters = str.length;
@@ -287,7 +288,7 @@ class ERATestingKeLiyeHai
 
 					//code to get scale_factors and add_offsets starts for ends parameters here
 					
-					f = new File("C:\\Users\\Siddhanth\\Documents\\JspProjectDocuments\\parametersandstuff\\SomeFilesForERA\\"+lat+"_"+lon+"\\Final\\testing1."+currenttime+".txt");
+					f = new File(locationOfWGET+"\\SomeFilesForERA\\"+lat+"_"+lon+"\\Final\\testing1."+currenttime+".txt");
 					br = new BufferedReader(new FileReader(f));
 					StringBuilder parameter = new StringBuilder("");
 					int sheetno = 1,rowno = 1,cellno = 0,totalnorows = 0;
@@ -384,7 +385,7 @@ class ERATestingKeLiyeHai
 					
 					//the next 3 lines delete the file testing1.currenttime.txt
 					
-					/*command = new StringBuilder("cmd /c cd C:\\Users\\Siddhanth\\Documents\\JspProjectDocuments\\parametersandstuff\\SomeFilesForERA\\"+lat+"_"+lon+"\\Final & del /Q testing1."+currenttime+".txt");	
+					/*command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFilesForERA\\"+lat+"_"+lon+"\\Final & del /Q testing1."+currenttime+".txt");	
 										
 					process = Runtime.getRuntime().exec(command.toString());
 							
@@ -392,12 +393,12 @@ class ERATestingKeLiyeHai
 					
 					//step 2 starts here
 					
-					FileOutputStream fos = new FileOutputStream(new File("C:\\Users\\Siddhanth\\Documents\\JspProjectDocuments\\parametersandstuff\\SomeFilesForERA\\"+lat+"_"+lon+"\\Final\\FirstTest."+currenttime+".xlsx"));
+					FileOutputStream fos = new FileOutputStream(new File(locationOfWGET+"\\SomeFilesForERA\\"+lat+"_"+lon+"\\Final\\FirstTest."+currenttime+".xlsx"));
 					workbook.write(fos);
 					fos.close();
 					System.out.println("FirstTest."+currenttime+".xlsx written successfully");
 					
-					f = new File("C:\\Users\\Siddhanth\\Documents\\JspProjectDocuments\\parametersandstuff\\SomeFilesForERA\\"+lat+"_"+lon+"\\Final\\FirstTest."+currenttime+".xlsx");
+					f = new File(locationOfWGET+"\\SomeFilesForERA\\"+lat+"_"+lon+"\\Final\\FirstTest."+currenttime+".xlsx");
 					FileInputStream fis = new FileInputStream(f);
 					//Get the workbook instance for XLSX file 
 					workbook = new XSSFWorkbook(fis);
@@ -803,14 +804,14 @@ class ERATestingKeLiyeHai
 					}
 					
 					//step 2 ends here
-					fos = new FileOutputStream(new File("C:\\Users\\Siddhanth\\Documents\\JspProjectDocuments\\parametersandstuff\\SomeFilesForERA\\"+lat+"_"+lon+"\\Final\\FirstTest."+currenttime+".xlsx"));
+					fos = new FileOutputStream(new File(locationOfWGET+"\\SomeFilesForERA\\"+lat+"_"+lon+"\\Final\\FirstTest."+currenttime+".xlsx"));
 					workbook.write(fos);
 					fos.close();
 					System.out.println("FirstTest."+currenttime+".xlsx written successfully");
 					
 					//code to copy spreadsheet named 'final' from 'FirstTest.'+currenttime+'.xlsx' into another excel file named 'FinalFirstTest.'+currenttime+'.xlsx'
 					
-						fis = new FileInputStream(new File("C:\\Users\\Siddhanth\\Documents\\JspProjectDocuments\\parametersandstuff\\SomeFilesForERA\\"+lat+"_"+lon+"\\Final\\FirstTest."+currenttime+".xlsx"));
+						fis = new FileInputStream(new File(locationOfWGET+"\\SomeFilesForERA\\"+lat+"_"+lon+"\\Final\\FirstTest."+currenttime+".xlsx"));
 						
 						//Get the workbook instance for XLS file 
 						workbook = new XSSFWorkbook(fis);
@@ -876,13 +877,13 @@ class ERATestingKeLiyeHai
 						
 						//the next 3 lines delete the file FirstTest.currenttime.xlsx
 						
-						/*command = new StringBuilder("cmd /c cd C:\\Users\\Siddhanth\\Documents\\JspProjectDocuments\\parametersandstuff\\SomeFilesForERA\\"+lat+"_"+lon+"\\Final & del /Q FirstTest."+currenttime+".xlsx");	
+						/*command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFilesForERA\\"+lat+"_"+lon+"\\Final & del /Q FirstTest."+currenttime+".xlsx");	
 										
 						process = Runtime.getRuntime().exec(command.toString());
 							
 						process.waitFor();*/
 						
-						fos = new FileOutputStream(new File("C:\\Users\\Siddhanth\\Documents\\JspProjectDocuments\\parametersandstuff\\SomeFilesForERA\\"+lat+"_"+lon+"\\Final\\FinalFirstTest."+currenttime+".xlsx"));
+						fos = new FileOutputStream(new File(locationOfWGET+"\\SomeFilesForERA\\"+lat+"_"+lon+"\\Final\\FinalFirstTest."+currenttime+".xlsx"));
 						newworkbook.write(fos);
 						fos.close();
 						System.out.println("FinalFirstTest."+currenttime+".xlsx written successfully");

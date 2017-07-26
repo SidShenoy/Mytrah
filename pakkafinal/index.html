@@ -211,26 +211,26 @@
                                                             <tbody>
 
 
-                                                                <form action="#" method="POST" class="container-fluid">
+                                                                <form action="UsingDATFile.jsp" method="POST" class="container-fluid" target="dummyframe">
 
                                                                     <tr>
                                                                         <td>LATITUDE</td>
                                                                         <td>
-                                                                            <input class="form-control" type="text" name="latitude" id="" autocomplete="off" placeholder="Latitude">
+                                                                            <input class="form-control" type="text" name="lat" id="" autocomplete="off" placeholder="Latitude">
                                                                         </td>
                                                                     </tr>
 
                                                                     <tr>
                                                                         <td>LONGITUDE</td>
                                                                         <td>
-                                                                            <input class="form-control" type="text" name="longitude" id="" autocomplete="off" placeholder="LONGITUDE">
+                                                                            <input class="form-control" type="text" name="lon" id="" autocomplete="off" placeholder="LONGITUDE">
                                                                         </td>
                                                                     </tr>
 
                                                                     <tr>
                                                                         <td>START YEAR</td>
                                                                         <td>
-                                                                            <select id="styear" name="styear" required="required" class="form-control">
+                                                                            <select id="styear" name="startyr" required="required" class="form-control">
                                         <script>
                                         var myDate = new Date();
                                         var styear = myDate.getFullYear();
@@ -245,16 +245,16 @@
                                                                     <tr>
                                                                         <td>START MONTH</td>
                                                                         <td>
-                                                                            <select id="stmon" name="stmon" required="required" class="form-control">
-                                        <option value="1">JAN</option>
-                                        <option value="2">FEB</option>
-                                        <option value="3">MAR</option>
-                                        <option value="4">APR</option>
-                                        <option value="5">MAY</option>
-                                        <option value="6">JUN</option>
-                                        <option value="7">JUL</option>
-                                        <option value="8">AUG</option>
-                                        <option value="9">SEP</option>
+                                                                            <select id="stmon" name="startmon" required="required" class="form-control">
+                                        <option value="01">JAN</option>
+                                        <option value="02">FEB</option>
+                                        <option value="03">MAR</option>
+                                        <option value="04">APR</option>
+                                        <option value="05">MAY</option>
+                                        <option value="06">JUN</option>
+                                        <option value="07">JUL</option>
+                                        <option value="08">AUG</option>
+                                        <option value="09">SEP</option>
                                         <option value="10">OCT</option>
                                         <option value="11">NOV</option>
                                         <option value="12">DEC</option>
@@ -265,7 +265,7 @@
                                                                     <tr>
                                                                         <td>START DAY</td>
                                                                         <td>
-                                                                            <select id="stdate" name="stdate" required="required" class="form-control">
+                                                                            <select id="stdate" name="startday" required="required" class="form-control">
                                         <script>
                                         for(var i = 1; i < 32; i++){
                                         if(i < 10)
@@ -286,7 +286,7 @@
                                                                     <tr>
                                                                         <td>END YEAR</td>
                                                                         <td>
-                                                                            <select id="endyear" name="endyear" required="required" class="form-control">
+                                                                            <select id="endyear" name="endyr" required="required" class="form-control">
                                         <script>
                                         var myDate = new Date();
                                         var endyear = myDate.getFullYear();
@@ -299,18 +299,18 @@
                                                                     </tr>
 
                                                                     <tr>
-                                                                        <td>START MONTH</td>
+                                                                        <td>END MONTH</td>
                                                                         <td>
-                                                                            <select id="stmon" name="stmon" required="required" class="form-control">
-                                        <option value="1">JAN</option>
-                                        <option value="2">FEB</option>
-                                        <option value="3">MAR</option>
-                                        <option value="4">APR</option>
-                                        <option value="5">MAY</option>
-                                        <option value="6">JUN</option>
-                                        <option value="7">JUL</option>
-                                        <option value="8">AUG</option>
-                                        <option value="9">SEP</option>
+                                                                            <select id="endmon" name="endmon" required="required" class="form-control">
+                                        <option value="01">JAN</option>
+                                        <option value="02">FEB</option>
+                                        <option value="03">MAR</option>
+                                        <option value="04">APR</option>
+                                        <option value="05">MAY</option>
+                                        <option value="06">JUN</option>
+                                        <option value="07">JUL</option>
+                                        <option value="08">AUG</option>
+                                        <option value="09">SEP</option>
                                         <option value="10">OCT</option>
                                         <option value="11">NOV</option>
                                         <option value="12">DEC</option>
@@ -319,9 +319,9 @@
                                                                     </tr>
 
                                                                     <tr>
-                                                                        <td>START DAY</td>
+                                                                        <td>END DAY</td>
                                                                         <td>
-                                                                            <select id="stdate" name="stdate" required="required" class="form-control">
+                                                                            <select id="enddate" name="endday" required="required" class="form-control">
                                         <script>
                                         for(var i = 1; i < 32; i++){
                                         if(i < 10)
@@ -378,7 +378,7 @@
                                                     </div>
 
                                                     <!-- <p class="help-block"><br><b>DO NOT FORGET TO SUBMIT AND <strong>UPLOAD</strong>.</b><br>Any empty field will be assumed as NULL / ZERO(0)<br><br></p> -->
-                                                    <button type="submit" id="submit" class="btn btn-success btn-md">SUBMIT</button>
+                                                    <button type="submit" name="submit" class="btn btn-success btn-md">SUBMIT</button>
                                                 </div>
 
                                             </center>
@@ -397,7 +397,8 @@
                     </div>
                 </div>
                 </form>
-
+				<iframe width="0" height="0" border="0" name="dummyframe" id="dummyframe" style="border:none;">
+				</iframe>
 
                 <form action="filter.jsp" method="POST" class="container-fluid">
 

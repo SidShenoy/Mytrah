@@ -212,34 +212,131 @@
                                                             <tbody>
 
 
-                                                                <form action="#" method="POST" class="container-fluid">
+                                                                <form action="UsingERA.jsp" method="POST" class="container-fluid" target="dummyframe">
 
                                                                     <tr>
                                                                         <td>LATITUDE</td>
                                                                         <td>
-                                                                            <input class="form-control" type="text" name="latitude" id="" autocomplete="off" placeholder="Latitude">
+                                                                            <input class="form-control" type="text" name="lat" id="" autocomplete="off" placeholder="Latitude">
                                                                         </td>
                                                                     </tr>
 
                                                                     <tr>
                                                                         <td>LONGITUDE</td>
                                                                         <td>
-                                                                            <input class="form-control" type="text" name="latitude" id="" autocomplete="off" placeholder="LONGITUDE">
+                                                                            <input class="form-control" type="text" name="lon" id="" autocomplete="off" placeholder="LONGITUDE">
                                                                         </td>
                                                                     </tr>
 
                                                                     <tr>
-                                                                        <td>START DATE <span class="label label-primary" style="font-size: 10px;text-align:center;">Please check input format</span>
-                                                                        </td>
+                                                                        <td>START YEAR</td>
                                                                         <td>
-                                                                            <input type="text" id="styear" name="date_date_range" required="required" placeholder="yyyy-mm-dd" class="form-control">
+                                                                            <select id="STARTYR" name="startyr" required="required" class="form-control">
+                                        <script>
+                                        var myDate = new Date();
+                                        var styear = myDate.getFullYear();
+                                        for(var i = 1979; i < styear+1; i++){
+                                        document.write('<option value="'+i+'">'+i+'</option>');
+                                        }
+                                        </script>
+                                        </select>
                                                                         </td>
                                                                     </tr>
 
                                                                     <tr>
-                                                                        <td>END YEAR <span class="label label-primary" style="font-size: 10px;text-align:center;">Please check input format</span></td>
+                                                                        <td>START MONTH</td>
                                                                         <td>
-                                                                            <input type="text" id="styear" name="date_date_range" required="required" placeholder="yyyy-mm-dd" class="form-control">
+                                                                            <select id="STARTMON" name="startmon" required="required" class="form-control">
+                                        <option value="01">JAN</option>
+                                        <option value="02">FEB</option>
+                                        <option value="03">MAR</option>
+                                        <option value="04">APR</option>
+                                        <option value="05">MAY</option>
+                                        <option value="06">JUN</option>
+                                        <option value="07">JUL</option>
+                                        <option value="08">AUG</option>
+                                        <option value="09">SEP</option>
+                                        <option value="10">OCT</option>
+                                        <option value="11">NOV</option>
+                                        <option value="12">DEC</option>
+                                        </select>
+                                                                        </td>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                        <td>START DAY</td>
+                                                                        <td>
+                                                                            <select id="STARTDAY" name="startday" required="required" class="form-control">
+                                        <script>
+                                        for(var i = 1; i < 32; i++){
+                                        if(i < 10)
+                                        {
+                                        i1 = "0" + i;
+                                        }
+                                        else
+                                        {
+                                        i1 = i;
+                                        }
+                                        document.write('<option value="'+i1+'">'+i1+'</option>')
+                                        }
+                                        </script>
+                                        </select>
+                                                                        </td>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                        <td>END YEAR</td>
+                                                                        <td>
+                                                                            <select id="ENDYR" name="endyr" required="required" class="form-control">
+                                        <script>
+                                        var myDate = new Date();
+                                        var endyear = myDate.getFullYear();
+                                        for(var i = 1979; i < endyear+1; i++){
+                                        document.write('<option value="'+i+'">'+i+'</option>');
+                                        }
+                                        </script>
+                                        </select>
+                                                                        </td>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                        <td>END MONTH</td>
+                                                                        <td>
+                                                                            <select id="ENDMON" name="endmon" required="required" class="form-control">
+                                        <option value="01">JAN</option>
+                                        <option value="02">FEB</option>
+                                        <option value="03">MAR</option>
+                                        <option value="04">APR</option>
+                                        <option value="05">MAY</option>
+                                        <option value="06">JUN</option>
+                                        <option value="07">JUL</option>
+                                        <option value="08">AUG</option>
+                                        <option value="09">SEP</option>
+                                        <option value="10">OCT</option>
+                                        <option value="11">NOV</option>
+                                        <option value="12">DEC</option>
+                                        </select>
+                                                                        </td>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                        <td>END DAY</td>
+                                                                        <td>
+                                                                            <select id="ENDDAY" name="endday" required="required" class="form-control">
+                                        <script>
+                                        for(var i = 1; i < 32; i++){
+                                        if(i < 10)
+                                        {
+                                        i1 = "0" + i;
+                                        }
+                                        else
+                                        {
+                                        i1 = i;
+                                        }
+                                        document.write('<option value="'+i1+'">'+i1+'</option>')
+                                        }
+                                        </script>
+                                        </select>
                                                                         </td>
                                                                     </tr>
                                                             </tbody>
@@ -273,243 +370,243 @@
                                                             <tbody>
                                                                 <h2> Parameters</h2>
                                                                 <tr colspan="2" align="left">
-                                                                    <td><input type="checkbox" name="param" value="168.128">
+                                                                    <td><input type="checkbox" name="variable" value="168.128">
                                                                         <span>2 metre dewpoint temperature</span><br>
-                                                                        <input type="checkbox" name="param" value="167.128">
+                                                                        <input type="checkbox" name="variable" value="167.128">
                                                                         <span>2 metre temperature</span><br>
-                                                                        <input type="checkbox" name="param" value="165.128">
+                                                                        <input type="checkbox" name="variable" value="165.128">
                                                                         <span>10 metre U wind component</span><br>
 
-                                                                        <input type="checkbox" name="param" value="166.128">
+                                                                        <input type="checkbox" name="variable" value="166.128">
                                                                         <span>10 metre V wind component</span><br>
 
-                                                                        <input type="checkbox" name="param" value="174.128">
+                                                                        <input type="checkbox" name="variable" value="174.128">
                                                                         <span>Albedo</span><br>
 
-                                                                        <input type="checkbox" name="param" value="148.128">
+                                                                        <input type="checkbox" name="variable" value="148.128">
                                                                         <span>Charnock</span><br>
 
-                                                                        <input type="checkbox" name="param" value="188.128">
+                                                                        <input type="checkbox" name="variable" value="188.128">
                                                                         <span>High cloud cover</span><br>
 
-                                                                        <input type="checkbox" name="param" value="35.128">
+                                                                        <input type="checkbox" name="variable" value="35.128">
                                                                         <span>Ice temperature layer 1</span><br>
 
-                                                                        <input type="checkbox" name="param" value="36.128">
+                                                                        <input type="checkbox" name="variable" value="36.128">
                                                                         <span>Ice temperature layer 2</span><br>
 
-                                                                        <input type="checkbox" name="param" value="37.128">
+                                                                        <input type="checkbox" name="variable" value="37.128">
                                                                         <span>Ice temperature layer 3</span><br>
 
-                                                                        <input type="checkbox" name="param" value="38.128">
+                                                                        <input type="checkbox" name="variable" value="38.128">
                                                                         <span>Ice temperature layer 4</span><br>
 
-                                                                        <input type="checkbox" name="param" value="234.128">
+                                                                        <input type="checkbox" name="variable" value="234.128">
                                                                         <span>Logarithm of surface roughness length for heat</span><br>
 
-                                                                        <input type="checkbox" name="param" value="186.128">
+                                                                        <input type="checkbox" name="variable" value="186.128">
                                                                         <span>Low cloud cover</span><br>
 
-                                                                        <input type="checkbox" name="param" value="151.128">
+                                                                        <input type="checkbox" name="variable" value="151.128">
                                                                         <span>Mean sea level pressure</span><br>
 
-                                                                        <input type="checkbox" name="param" value="230.140">
+                                                                        <input type="checkbox" name="variable" value="230.140">
                                                                         <span>Mean wave direction</span><br>
 
-                                                                        <input type="checkbox" name="param" value="232.140">
+                                                                        <input type="checkbox" name="variable" value="232.140">
                                                                         <span>Mean wave period</span><br>
 
-                                                                        <input type="checkbox" name="param" value="187.128">
+                                                                        <input type="checkbox" name="variable" value="187.128">
                                                                         <span>Medium cloud cover</span><br>
 
-                                                                        <input type="checkbox" name="param" value="34.128">
+                                                                        <input type="checkbox" name="variable" value="34.128">
                                                                         <span>Sea surface temperature</span><br>
 
-                                                                        <input type="checkbox" name="param" value="31.128">
+                                                                        <input type="checkbox" name="variable" value="31.128">
                                                                         <span>Sea-ice cover</span><br>
 
-                                                                        <input type="checkbox" name="param" value="229.140">
+                                                                        <input type="checkbox" name="variable" value="229.140">
                                                                         <span>Significant height of combined wind waves and swell</span><br>
 
-                                                                        <input type="checkbox" name="param" value="198.128">
+                                                                        <input type="checkbox" name="variable" value="198.128">
                                                                         <span>Skin reservoir content</span><br>
 
-                                                                        <input type="checkbox" name="param" value="235.128">
+                                                                        <input type="checkbox" name="variable" value="235.128">
                                                                         <span>Skin temperature</span><br>
 
-                                                                        <input type="checkbox" name="param" value="32.128">
+                                                                        <input type="checkbox" name="variable" value="32.128">
                                                                         <span>Snow albedo</span><br>
 
-                                                                        <input type="checkbox" name="param" value="33.128">
+                                                                        <input type="checkbox" name="variable" value="33.128">
                                                                         <span>Snow density</span><br>
 
-                                                                        <input type="checkbox" name="param" value="141.128">
+                                                                        <input type="checkbox" name="variable" value="141.128">
                                                                         <span>Snow depth</span><br>
 
-                                                                        <input type="checkbox" name="param" value="139.128">
+                                                                        <input type="checkbox" name="variable" value="139.128">
                                                                         <span>Soil temperature level 1</span><br>
 
-                                                                        <input type="checkbox" name="param" value="170.128">
+                                                                        <input type="checkbox" name="variable" value="170.128">
                                                                         <span>Soil temperature level 2</span><br>
 
-                                                                        <input type="checkbox" name="param" value="183.128">
+                                                                        <input type="checkbox" name="variable" value="183.128">
                                                                         <span>Soil temperature level 3</span><br>
 
-                                                                        <input type="checkbox" name="param" value="236.128">
+                                                                        <input type="checkbox" name="variable" value="236.128">
                                                                         <span>Soil temperature level 4</span><br>
 
-                                                                        <input type="checkbox" name="param" value="134.128">
+                                                                        <input type="checkbox" name="variable" value="134.128">
                                                                         <span>Surface pressure</span><br>
 
-                                                                        <input type="checkbox" name="param" value="173.128">
+                                                                        <input type="checkbox" name="variable" value="173.128">
                                                                         <span>Surface roughness</span><br>
 
-                                                                        <input type="checkbox" name="param" value="238.128">
+                                                                        <input type="checkbox" name="variable" value="238.128">
                                                                         <span>Temperature of snow layer</span><br>
 
-                                                                        <input type="checkbox" name="param" value="164.128">
+                                                                        <input type="checkbox" name="variable" value="164.128">
                                                                         <span>Total cloud cover</span><br>
 
-                                                                        <input type="checkbox" name="param" value="206.128">
+                                                                        <input type="checkbox" name="variable" value="206.128">
                                                                         <span>Total column ozone</span><br>
 
-                                                                        <input type="checkbox" name="param" value="136.128">
+                                                                        <input type="checkbox" name="variable" value="136.128">
                                                                         <span>Total column water</span><br>
 
-                                                                        <input type="checkbox" name="param" value="137.128">
+                                                                        <input type="checkbox" name="variable" value="137.128">
                                                                         <span>Total column water vapour</span><br>
 
-                                                                        <input type="checkbox" name="param" value="57.162">
+                                                                        <input type="checkbox" name="variable" value="57.162">
                                                                         <span>Vertical integral of cloud frozen water</span><br>
 
-                                                                        <input type="checkbox" name="param" value="56.162">
+                                                                        <input type="checkbox" name="variable" value="56.162">
                                                                         <span>Vertical integral of cloud liquid water</span><br>
 
-                                                                        <input type="checkbox" name="param" value="80.162">
+                                                                        <input type="checkbox" name="variable" value="80.162">
                                                                         <span>Vertical integral of divergence of cloud frozen water flux</span><br>
 
-                                                                        <input type="checkbox" name="param" value="79.162">
+                                                                        <input type="checkbox" name="variable" value="79.162">
                                                                         <span>Vertical integral of divergence of cloud liquid water flux</span><br>
                                                                     </td>
                                                                     <td>
-                                                                        <input type="checkbox" name="param" value="85.162">
+                                                                        <input type="checkbox" name="variable" value="85.162">
                                                                         <span>Vertical integral of divergence of geopotential flux</span><br>
 
-                                                                        <input type="checkbox" name="param" value="82.162">
+                                                                        <input type="checkbox" name="variable" value="82.162">
                                                                         <span>Vertical integral of divergence of kinetic energy flux</span><br>
 
-                                                                        <input type="checkbox" name="param" value="81.162">
+                                                                        <input type="checkbox" name="variable" value="81.162">
                                                                         <span>Vertical integral of divergence of mass flux</span><br>
 
-                                                                        <input type="checkbox" name="param" value="84.162">
+                                                                        <input type="checkbox" name="variable" value="84.162">
                                                                         <span>Vertical integral of divergence of moisture flux</span><br>
 
-                                                                        <input type="checkbox" name="param" value="87.162">
+                                                                        <input type="checkbox" name="variable" value="87.162">
                                                                         <span>Vertical integral of divergence of ozone flux</span><br>
 
-                                                                        <input type="checkbox" name="param" value="83.162">
+                                                                        <input type="checkbox" name="variable" value="83.162">
                                                                         <span>Vertical integral of divergence of thermal energy flux</span><br>
 
-                                                                        <input type="checkbox" name="param" value="86.162">
+                                                                        <input type="checkbox" name="variable" value="86.162">
                                                                         <span>Vertical integral of divergence of total energy flux</span><br>
 
-                                                                        <input type="checkbox" name="param" value="90.162">
+                                                                        <input type="checkbox" name="variable" value="90.162">
                                                                         <span>Vertical integral of eastward cloud frozen water flux</span><br>
 
-                                                                        <input type="checkbox" name="param" value="88.162">
+                                                                        <input type="checkbox" name="variable" value="88.162">
                                                                         <span>Vertical integral of eastward cloud liquid water flux</span><br>
 
-                                                                        <input type="checkbox" name="param" value="73.162">
+                                                                        <input type="checkbox" name="variable" value="73.162">
                                                                         <span>Vertical integral of eastward geopotential flux</span><br>
 
-                                                                        <input type="checkbox" name="param" value="69.162">
+                                                                        <input type="checkbox" name="variable" value="69.162">
                                                                         <span>Vertical integral of eastward heat flux</span><br>
 
-                                                                        <input type="checkbox" name="param" value="67.162">
+                                                                        <input type="checkbox" name="variable" value="67.162">
                                                                         <span>Vertical integral of eastward kinetic energy flux</span><br>
 
-                                                                        <input type="checkbox" name="param" value="65.162">
+                                                                        <input type="checkbox" name="variable" value="65.162">
                                                                         <span>Vertical integral of eastward mass flux</span><br>
 
-                                                                        <input type="checkbox" name="param" value="77.162">
+                                                                        <input type="checkbox" name="variable" value="77.162">
                                                                         <span>Vertical integral of eastward ozone flux</span><br>
 
-                                                                        <input type="checkbox" name="param" value="75.162">
+                                                                        <input type="checkbox" name="variable" value="75.162">
                                                                         <span>Vertical integral of eastward total energy flux</span><br>
 
-                                                                        <input type="checkbox" name="param" value="71.162">
+                                                                        <input type="checkbox" name="variable" value="71.162">
                                                                         <span>Vertical integral of eastward water vapour flux</span><br>
 
-                                                                        <input type="checkbox" name="param" value="64.162">
+                                                                        <input type="checkbox" name="variable" value="64.162">
                                                                         <span>Vertical integral of energy conversion</span><br>
 
-                                                                        <input type="checkbox" name="param" value="59.162">
+                                                                        <input type="checkbox" name="variable" value="59.162">
                                                                         <span>Vertical integral of kinetic energy</span><br>
 
-                                                                        <input type="checkbox" name="param" value="53.162">
+                                                                        <input type="checkbox" name="variable" value="53.162">
                                                                         <span>Vertical integral of mass of atmosphere</span><br>
 
-                                                                        <input type="checkbox" name="param" value="92.162">
+                                                                        <input type="checkbox" name="variable" value="92.162">
                                                                         <span>Vertical integral of mass tendency</span><br>
 
-                                                                        <input type="checkbox" name="param" value="91.162">
+                                                                        <input type="checkbox" name="variable" value="91.162">
                                                                         <span>Vertical integral of northward cloud frozen water flux</span><br>
 
-                                                                        <input type="checkbox" name="param" value="89.162">
+                                                                        <input type="checkbox" name="variable" value="89.162">
                                                                         <span>Vertical integral of northward cloud liquid water flux</span><br>
 
-                                                                        <input type="checkbox" name="param" value="74.162">
+                                                                        <input type="checkbox" name="variable" value="74.162">
                                                                         <span>Vertical integral of northward geopotential flux</span><br>
 
-                                                                        <input type="checkbox" name="param" value="70.162">
+                                                                        <input type="checkbox" name="variable" value="70.162">
                                                                         <span>Vertical integral of northward heat flux</span><br>
 
-                                                                        <input type="checkbox" name="param" value="68.162">
+                                                                        <input type="checkbox" name="variable" value="68.162">
                                                                         <span>Vertical integral of northward kinetic energy flux</span><br>
 
-                                                                        <input type="checkbox" name="param" value="66.162">
+                                                                        <input type="checkbox" name="variable" value="66.162">
                                                                         <span>Vertical integral of northward mass flux</span><br>
 
-                                                                        <input type="checkbox" name="param" value="78.162">
+                                                                        <input type="checkbox" name="variable" value="78.162">
                                                                         <span>Vertical integral of northward ozone flux</span><br>
 
-                                                                        <input type="checkbox" name="param" value="76.162">
+                                                                        <input type="checkbox" name="variable" value="76.162">
                                                                         <span>Vertical integral of northward total energy flux</span><br>
 
-                                                                        <input type="checkbox" name="param" value="72.162">
+                                                                        <input type="checkbox" name="variable" value="72.162">
                                                                         <span>Vertical integral of northward water vapour flux</span><br>
 
-                                                                        <input type="checkbox" name="param" value="58.162">
+                                                                        <input type="checkbox" name="variable" value="58.162">
                                                                         <span>Vertical integral of ozone</span><br>
 
-                                                                        <input type="checkbox" name="param" value="61.162">
+                                                                        <input type="checkbox" name="variable" value="61.162">
                                                                         <span>Vertical integral of potential+internal energy</span><br>
 
-                                                                        <input type="checkbox" name="param" value="62.162">
+                                                                        <input type="checkbox" name="variable" value="62.162">
                                                                         <span>Vertical integral of potential+internal+latent energy</span><br>
 
-                                                                        <input type="checkbox" name="param" value="54.162">
+                                                                        <input type="checkbox" name="variable" value="54.162">
                                                                         <span>Vertical integral of temperature</span><br>
 
-                                                                        <input type="checkbox" name="param" value="60.162">
+                                                                        <input type="checkbox" name="variable" value="60.162">
                                                                         <span>Vertical integral of thermal energy</span><br>
 
-                                                                        <input type="checkbox" name="param" value="63.162">
+                                                                        <input type="checkbox" name="variable" value="63.162">
                                                                         <span>Vertical integral of total energy</span><br>
 
-                                                                        <input type="checkbox" name="param" value="55.162">
+                                                                        <input type="checkbox" name="variable" value="55.162">
                                                                         <span>Vertical integral of water vapour</span><br>
 
-                                                                        <input type="checkbox" name="param" value="39.128">
+                                                                        <input type="checkbox" name="variable" value="39.128">
                                                                         <span>Volumetric soil water layer 1</span><br>
 
-                                                                        <input type="checkbox" name="param" value="40.128">
+                                                                        <input type="checkbox" name="variable" value="40.128">
                                                                         <span>Volumetric soil water layer 2</span><br>
 
-                                                                        <input type="checkbox" name="param" value="41.128">
+                                                                        <input type="checkbox" name="variable" value="41.128">
                                                                         <span>Volumetric soil water layer 3</span><br>
 
-                                                                        <input type="checkbox" name="param" value="42.128">
+                                                                        <input type="checkbox" name="variable" value="42.128">
                                                                         <span>Volumetric soil water layer 4</span><br>
                                                                     </td>
                                                                 </tr>
@@ -537,6 +634,8 @@
                     </div>
                 </div>
                 </form>
+				<iframe width="0" height="0" border="0" name="dummyframe" id="dummyframe" style="border:none;">
+				</iframe>
             </div>
             <!-- /.container-fluid -->
 
