@@ -1,0 +1,83 @@
+netcdf \16.5_78.151923 {
+dimensions:
+	latitude = 1 ;
+	longitude = 1 ;
+	time = UNLIMITED ; // (4 currently)
+variables:
+	float latitude(latitude) ;
+		latitude:units = "degrees_north" ;
+		latitude:long_name = "latitude" ;
+	float longitude(longitude) ;
+		longitude:units = "degrees_east" ;
+		longitude:long_name = "longitude" ;
+	short sp(time, latitude, longitude) ;
+		sp:scale_factor = 0.0391739657882288 ;
+		sp:add_offset = 96531.2616630171 ;
+		sp:_FillValue = -32767s ;
+		sp:missing_value = -32767s ;
+		sp:units = "Pa" ;
+		sp:long_name = "Surface pressure" ;
+		sp:standard_name = "surface_air_pressure" ;
+	short t2m(time, latitude, longitude) ;
+		t2m:scale_factor = 0.000196211639972895 ;
+		t2m:add_offset = 297.273308876602 ;
+		t2m:_FillValue = -32767s ;
+		t2m:missing_value = -32767s ;
+		t2m:units = "K" ;
+		t2m:long_name = "2 metre temperature" ;
+	int time(time) ;
+		time:units = "hours since 1900-01-01 00:00:0.0" ;
+		time:long_name = "time" ;
+		time:calendar = "gregorian" ;
+	short u10(time, latitude, longitude) ;
+		u10:scale_factor = 3.04590767478014e-005 ;
+		u10:add_offset = -2.35277268345683 ;
+		u10:_FillValue = -32767s ;
+		u10:missing_value = -32767s ;
+		u10:units = "m s**-1" ;
+		u10:long_name = "10 metre U wind component" ;
+	short v10(time, latitude, longitude) ;
+		v10:scale_factor = 4.32169510353261e-005 ;
+		v10:add_offset = 1.34856712638967 ;
+		v10:_FillValue = -32767s ;
+		v10:missing_value = -32767s ;
+		v10:units = "m s**-1" ;
+		v10:long_name = "10 metre V wind component" ;
+
+// global attributes:
+		:Conventions = "CF-1.6" ;
+		:history = "Wed Jul 26 15:19:23 2017: ncks -d longitude,77.5,78.5 -d latitude,16.0,17.0 19790101_19790101.01110000000000000000000000000100000000000000000000000000000000000000000000000000.nc 16.5_78.151923.nc\n",
+			"2017-07-26 07:56:56 GMT by grib_to_netcdf-2.4.0: grib_to_netcdf /data/data05/scratch/_mars-atls03-70e05f9f8ba4e9d19932f1c45a7be8d8-F78QLM.grib -o /data/data03/scratch/_grib2netcdf-atls05-98f536083ae965b31b0d04811be6f4c6-ft19NW.nc -utime" ;
+		:NCO = "20170726" ;
+data:
+
+ latitude = 16.5 ;
+
+ longitude = 78 ;
+
+ sp =
+  -2464,
+  1830,
+  -5897,
+  1016 ;
+
+ t2m =
+  -24062,
+  15104,
+  27942,
+  -13854 ;
+
+ time = 692496, 692502, 692508, 692514 ;
+
+ u10 =
+  27406,
+  -28335,
+  -28902,
+  -12845 ;
+
+ v10 =
+  -23188,
+  3929,
+  10972,
+  14744 ;
+}

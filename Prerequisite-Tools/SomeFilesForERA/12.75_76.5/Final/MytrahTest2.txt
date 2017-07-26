@@ -1,0 +1,149 @@
+netcdf \15_76.5 {
+dimensions:
+	latitude = 1 ;
+	longitude = 1 ;
+	time = UNLIMITED ; // (20 currently)
+variables:
+	float latitude(latitude) ;
+		latitude:units = "degrees_north" ;
+		latitude:long_name = "latitude" ;
+	float longitude(longitude) ;
+		longitude:units = "degrees_east" ;
+		longitude:long_name = "longitude" ;
+	short sp(time, latitude, longitude) ;
+		sp:scale_factor = 0.765438250099187 ;
+		sp:add_offset = 77127.81064025 ;
+		sp:_FillValue = -32767s ;
+		sp:missing_value = -32767s ;
+		sp:units = "Pa" ;
+		sp:long_name = "Surface pressure" ;
+		sp:standard_name = "surface_air_pressure" ;
+	short t2m(time, latitude, longitude) ;
+		t2m:scale_factor = 0.00108107657830788 ;
+		t2m:add_offset = 271.795144276164 ;
+		t2m:_FillValue = -32767s ;
+		t2m:missing_value = -32767s ;
+		t2m:units = "K" ;
+		t2m:long_name = "2 metre temperature" ;
+	int time(time) ;
+		time:units = "hours since 1900-01-01 00:00:0.0" ;
+		time:long_name = "time" ;
+		time:calendar = "gregorian" ;
+	short u10(time, latitude, longitude) ;
+		u10:scale_factor = 0.00035412728885608 ;
+		u10:add_offset = 3.05367787867735 ;
+		u10:_FillValue = -32767s ;
+		u10:missing_value = -32767s ;
+		u10:units = "m s**-1" ;
+		u10:long_name = "10 metre U wind component" ;
+	short v10(time, latitude, longitude) ;
+		v10:scale_factor = 0.000242675238264083 ;
+		v10:add_offset = -1.699216109958 ;
+		v10:_FillValue = -32767s ;
+		v10:missing_value = -32767s ;
+		v10:units = "m s**-1" ;
+		v10:long_name = "10 metre V wind component" ;
+
+// global attributes:
+		:Conventions = "CF-1.6" ;
+		:history = "Mon May 01 15:53:51 2017: ncks -d longitude,76.4,76.6 -d latitude,14.9,15.1 TestERA.nc 15_76.5.nc\n",
+			"2017-05-01 10:22:10 GMT by grib_to_netcdf-2.2.0: grib_to_netcdf /data/data04/scratch/_mars-atls14-a562cefde8a29a7288fa0b8b7f9413f7-oguTQn.grib -o /data/data04/scratch/_grib2netcdf-atls05-a562cefde8a29a7288fa0b8b7f9413f7-001w38.nc -utime" ;
+		:NCO = "20170501" ;
+data:
+
+ latitude = 15 ;
+
+ longitude = 76.5 ;
+
+ sp =
+  23499,
+  23735,
+  23344,
+  23655,
+  23557,
+  23771,
+  23346,
+  23772,
+  23701,
+  23846,
+  23421,
+  23803,
+  23664,
+  23817,
+  23424,
+  23717,
+  23542,
+  23666,
+  23271,
+  23657 ;
+
+ t2m =
+  19442,
+  25307,
+  26792,
+  21272,
+  17723,
+  24707,
+  24395,
+  21122,
+  17825,
+  24582,
+  25203,
+  20766,
+  17482,
+  25678,
+  26660,
+  20260,
+  17336,
+  26309,
+  25859,
+  21623 ;
+
+ time = 692496, 692502, 692508, 692514, 692520, 692526, 692532, 692538, 
+    692544, 692550, 692556, 692562, 692568, 692574, 692580, 692586, 692592, 
+    692598, 692604, 692610 ;
+
+ u10 =
+  -14894,
+  -17825,
+  -15152,
+  -17608,
+  -15354,
+  -18932,
+  -16816,
+  -19573,
+  -14509,
+  -18520,
+  -15700,
+  -15359,
+  -14519,
+  -15644,
+  -13700,
+  -14404,
+  -10484,
+  -13778,
+  -13568,
+  -16095 ;
+
+ v10 =
+  10892,
+  13038,
+  8715,
+  10964,
+  9827,
+  13553,
+  9623,
+  10419,
+  9728,
+  16097,
+  8574,
+  11098,
+  13384,
+  11076,
+  7756,
+  13862,
+  14930,
+  13121,
+  7976,
+  13636 ;
+}
