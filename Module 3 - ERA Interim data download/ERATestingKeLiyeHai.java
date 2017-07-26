@@ -50,8 +50,8 @@ class ERATestingKeLiyeHai
 				double lonmax = Double.parseDouble(lon) + 0.5; //previously 0.1
 				double lonmin = Double.parseDouble(lon) - 0.5; //previously 0.1
 				
-				String startDate = startyr+startmon+startday;
-				String endDate = endyr+endmon+endday;
+				String start_Date = startyr+startmon+startday;
+				String end_Date = endyr+endmon+endday;
 				String param[] = {"168.128","167.128","165.128","166.128","174.128","148.128","188.128","35.128","36.128","37.128","38.128","234.128","186.128","151.128","230.140","232.140","187.128","34.128","31.128","229.140","198.128","235.128","32.128","33.128","141.128","139.128","170.128","183.128","236.128","134.128","173.128","238.128","164.128","206.128","136.128","137.128","57.162","56.162","80.162","79.162","85.162","82.162","81.162","84.162","87.162","83.162","86.162","90.162","88.162","73.162","69.162","67.162","65.162","77.162","75.162","71.162","64.162","59.162","53.162","92.162","91.162","89.162","74.162","70.162","68.162","66.162","78.162","76.162","72.162","58.162","61.162","62.162","54.162","60.162","63.162","55.162","39.128","40.128","41.128","42.128"};
 				
 				//code to get parameter presence bit string starts
@@ -102,6 +102,7 @@ class ERATestingKeLiyeHai
 				String finalexcelfile = " ";
 				String currenttime = " ";
 				int test=0;
+				File f;
 				
 				DateFormat df = new SimpleDateFormat("HHmmss");
 				Date dateobj = new Date();
@@ -111,7 +112,7 @@ class ERATestingKeLiyeHai
 				
 				try
 				{
-					StringBuilder command = new StringBuilder("cmd /c cd C:\\Users\\Siddhanth\\Documents\\JspProjectDocuments\\parametersandstuff\\SomeFilesForERA\\"+lat+"_"+lon+" &  dir /b /a-d | find \""+startDate+"_"+endDate+"."+presence+".nc\"");
+					StringBuilder command = new StringBuilder("cmd /c cd C:\\Users\\Siddhanth\\Documents\\JspProjectDocuments\\parametersandstuff\\SomeFilesForERA\\"+lat+"_"+lon+" &  dir /b /a-d | find \""+start_Date+"_"+end_Date+"."+presence+".nc\"");
 									
 					Process process = Runtime.getRuntime().exec(command.toString());
 											
@@ -153,7 +154,7 @@ class ERATestingKeLiyeHai
 						requestToBeSent.put("repres","sh");
 						requestToBeSent.put("levtype","sfc");////
 						//requestToBeSent.put("param",paramToBeRetrieved.toString());////
-						requestToBeSent.put("param","165.128");
+						requestToBeSent.put("param","167.128/165.128/166.128/134.128");
 						requestToBeSent.put("time","00/06/12/18");////
 						requestToBeSent.put("step","0");	////
 						requestToBeSent.put("domain","G");
@@ -162,9 +163,9 @@ class ERATestingKeLiyeHai
 						requestToBeSent.put("grid","0.75/0.75");////
 						requestToBeSent.put("padding","0");
 						requestToBeSent.put("expect","ANY");
-						requestToBeSent.put("date",startDate+"/to/"+endDate);////
+						requestToBeSent.put("date",start_Date+"/to/"+end_Date);////
 						requestToBeSent.put("format","netcdf");////
-						//requestToBeSent.put("target","C:/Users/Siddhanth/Documents/JspProjectDocuments/parametersandstuff/SomeFilesForERA/"+lat+"_"+lon+"/"+startDate+"_"+endDate+"."+presence+".grib");////
+						//requestToBeSent.put("target","C:/Users/Siddhanth/Documents/JspProjectDocuments/parametersandstuff/SomeFilesForERA/"+lat+"_"+lon+"/"+start_Date+"_"+end_Date+"."+presence+".grib");////
 						requestToBeSent.put("target","rightNow.nc");
 						
 						/*Map<String, String> env = System.getenv();
@@ -186,21 +187,21 @@ class ERATestingKeLiyeHai
 						}
 						
 						System.out.println("Successfully RETRIEVED the request Id!!!");
-					}
+					
 					
 					//reading the file in order to obtain the request id and then obtain the download page
-					File f = new File("C:\\Users\\Siddhanth\\Documents\\JspProjectDocuments\\parametersandstuff\\SomeFilesForERA\\"+"requestId.txt");
+					f = new File("C:\\Users\\Siddhanth\\Documents\\JspProjectDocuments\\parametersandstuff\\SomeFilesForERA\\"+"requestId.txt");
 					br = new BufferedReader(new FileReader(f));
 					String requestId = br.readLine();
 					String urlDownloadPage = "https://apps.ecmwf.int/auth/login/password/?back=http://apps.ecmwf.int/datasets/data/interim-full-daily/levtype=sfc/requests/netcdf/" + requestId + "&uid=" + username + "&password=" + password;
-					command = new StringBuilder("cmd /c cd C:\\Users\\Siddhanth\\Desktop\\phantomjs\\phantomjs-2.1.1-windows\\bin & phantomjs save_page.js \"" + urlDownloadPage + "\" >> C:\\Users\\Siddhanth\\Documents\\JspProjectDocuments\\parametersandstuff\\SomeFilesForERA\\"+lat+"_"+lon+"\\"+startDate+"_"+endDate+"."+presence+".html");	
+					command = new StringBuilder("cmd /c cd C:\\Users\\Siddhanth\\Desktop\\phantomjs\\phantomjs-2.1.1-windows\\bin & phantomjs save_page.js \"" + urlDownloadPage + "\" >> C:\\Users\\Siddhanth\\Documents\\JspProjectDocuments\\parametersandstuff\\SomeFilesForERA\\"+lat+"_"+lon+"\\"+start_Date+"_"+end_Date+"."+presence+".html");	
 								
 					process = Runtime.getRuntime().exec(command.toString());
 					
 					process.waitFor();
 					
 					//from the downloaded "download page", we now read it and obtain the "download_link" for the .nc file and then download the .nc file
-					f = new File("C:\\Users\\Siddhanth\\Documents\\JspProjectDocuments\\parametersandstuff\\SomeFilesForERA\\"+lat+"_"+lon+"\\"+startDate+"_"+endDate+"."+presence+".html");
+					f = new File("C:\\Users\\Siddhanth\\Documents\\JspProjectDocuments\\parametersandstuff\\SomeFilesForERA\\"+lat+"_"+lon+"\\"+start_Date+"_"+end_Date+"."+presence+".html");
 					br = new BufferedReader(new FileReader(f));
 					String downloadLink;
 					
@@ -210,13 +211,15 @@ class ERATestingKeLiyeHai
 					int index = downloadLink.indexOf("class=\"download_link\"");
 					downloadLink = downloadLink.substring(index+31,index+150);
 					
-					command = new StringBuilder("cmd /c cd C:\\Users\\Siddhanth\\Documents\\JspProjectDocuments\\parametersandstuff & wget -O SomeFilesForERA\\"+lat+"_"+lon+"\\"+startDate+"_"+endDate+"."+presence+".nc "+downloadLink);
+					command = new StringBuilder("cmd /c cd C:\\Users\\Siddhanth\\Documents\\JspProjectDocuments\\parametersandstuff & wget -O SomeFilesForERA\\"+lat+"_"+lon+"\\"+start_Date+"_"+end_Date+"."+presence+".nc "+downloadLink);
 					
 					process = Runtime.getRuntime().exec(command.toString());
 					
 					process.waitFor();
 					
-					command = new StringBuilder("cmd /c cd C:\\Users\\Siddhanth\\Documents\\JspProjectDocuments\\parametersandstuff\\SomeFilesForERA\\"+lat+"_"+lon+" & ncks -d longitude,"+lonmin+","+lonmax+" -d latitude,"+latmin+","+latmax+" "+startDate+"_"+endDate+"."+presence+".nc "+lat+"_"+lon+"."+currenttime+".nc");	
+					}
+					
+					command = new StringBuilder("cmd /c cd C:\\Users\\Siddhanth\\Documents\\JspProjectDocuments\\parametersandstuff\\SomeFilesForERA\\"+lat+"_"+lon+" & ncks -d longitude,"+lonmin+","+lonmax+" -d latitude,"+latmin+","+latmax+" "+start_Date+"_"+end_Date+"."+presence+".nc "+lat+"_"+lon+"."+currenttime+".nc");	
 								
 					process = Runtime.getRuntime().exec(command.toString());
 					
@@ -289,6 +292,12 @@ class ERATestingKeLiyeHai
 					StringBuilder parameter = new StringBuilder("");
 					int sheetno = 1,rowno = 1,cellno = 0,totalnorows = 0;
 					c = ' ';
+					
+					String startDate = "01/01/1979 00:00:00";
+					df = new SimpleDateFormat("dd/mm/yyyy hh:mm:ss");
+					dateobj = df.parse(startDate);
+
+					System.out.println("date is -------> "+dateobj);
 					
 					while(!(line=br.readLine()).equals("data:"))
 					{}
@@ -429,10 +438,13 @@ class ERATestingKeLiyeHai
 					row.createCell((short)cellno).setCellFormula("latitude!A2");
 					cellno++;
 					
-					cellno = 1;
+					cellno = 0;
 					
 					row = spreadsheet.createRow((short)rowno);	
 					rowno++;
+					
+					row.createCell((short)cellno).setCellValue("Date");
+					cellno++;
 					
 					int exists1=-1;
 					int exists2=-1;
@@ -700,8 +712,30 @@ class ERATestingKeLiyeHai
 					
 					while(totalnorows!=0)
 					{
-						cellno = 1;
+						cellno = 0;
 						row = spreadsheet.createRow((short)rowno);
+						
+						if(rowno==2)
+						{
+							CellStyle cellStyle = workbook.createCellStyle();
+							CreationHelper createHelper = workbook.getCreationHelper();
+							cellStyle.setDataFormat(createHelper.createDataFormat().getFormat("dd/mm/yyyy hh:mm:ss"));
+							Cell cell = row.createCell((short)cellno);
+							cell.setCellValue(dateobj);
+							cell.setCellStyle(cellStyle);
+							
+							cellno++;
+						}
+						else
+						{
+							CellStyle cellStyle = workbook.createCellStyle();
+							CreationHelper createHelper = workbook.getCreationHelper();
+							cellStyle.setDataFormat(createHelper.createDataFormat().getFormat("dd/mm/yyyy hh:mm:ss"));
+							Cell cell = row.createCell((short)cellno);
+							cell.setCellStyle(cellStyle);
+							cell.setCellFormula("A"+rowno+"+(1/24)");
+							cellno++;
+						}
 						
 						if(workbook.getSheet("u2")!=null && workbook.getSheet("v2")!=null)
 						{
@@ -793,10 +827,7 @@ class ERATestingKeLiyeHai
 						while(rowIterator.hasNext()) {
 							row = (XSSFRow)rowIterator.next();
 							
-							if(rowno==0)
-							cellno = 0;
-							else
-							cellno = 1;	
+							cellno=0;
 							
 							//For each row, iterate through each columns
 							Iterator <Cell> cellIterator = row.cellIterator();	
@@ -806,6 +837,18 @@ class ERATestingKeLiyeHai
 							while(cellIterator.hasNext()) {
 								Cell cell = cellIterator.next();
 								
+								if(rowno>1 && cellno==0)
+								{
+									//newrow.createCell((short)cellno).setCellValue(cell.getDateCellValue());
+									CellValue cellValue = evaluator.evaluate(cell);
+									Cell newcell = newrow.createCell((short)cellno);
+									CellStyle cellStyle = newworkbook.createCellStyle();
+									CreationHelper createHelper = newworkbook.getCreationHelper();
+									cellStyle.setDataFormat(createHelper.createDataFormat().getFormat("dd/mm/yyyy hh:mm:ss"));
+									newcell.setCellStyle(cellStyle);
+									newcell.setCellValue(cellValue.getNumberValue());
+								}
+								else
 								switch(cell.getCellTypeEnum()) {
 									case BOOLEAN:
 										newrow.createCell((short)cellno).setCellValue(cell.getBooleanCellValue());
