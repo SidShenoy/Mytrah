@@ -7,12 +7,7 @@
 <strong><h3>Hello user, your file is being downloaded, please wait...</h3></strong>
 <br><br>
 <%@ page import="org.ecmwf.*,org.json.*,java.util.Map,java.io.*,java.text.*,java.util.*,org.apache.poi.xssf.usermodel.*,org.apache.poi.ss.usermodel.*,org.apache.poi.ss.util.CellReference,javax.swing.JOptionPane"%>
-<%
-				//this is for downloading between latitudes 26.719N-19.512S and between longitudes 74.531W-83.496E
-				//further this is to download data from 01/01/1980 to 07/01/1980 i.e. first week of the year 1980
-				//this has been done due to memory constraints
-				
-				
+<%				
 				String lat = request.getParameter("lat");
 				String lon = request.getParameter("lon");
 				String str[] = request.getParameterValues("variable");
@@ -23,11 +18,10 @@
 				String endmon = request.getParameter("endmon");
 				String endday = request.getParameter("endday");
 				
-				
+				//Was used for testing purposes
 				/*String lat = "16.5";
 				String lon = "78";
-				//String str[] = {"134.128","165.128","166.128","167.128"};
-				String str[] = {"167.128","165.128","166.128","134.128"};
+				String str[] = {"134.128","165.128","166.128","167.128"};
 				String startyr = "1979";
 				String startmon = "01";
 				String startday = "01";
@@ -38,7 +32,6 @@
 				
 				String username = "f2015057@hyderabad.bits-pilani.ac.in";
 				String password = "lF5k3f";
-				//String locationOfWGET = "C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff";
 				String locationOfWGET = "C:\\JSP Project\\tomcat\\webapps\\ROOT\\SidPrac\\Mytrah\\Prerequisite-Tools";
 
 				
@@ -273,8 +266,6 @@
 						
 						if(match1!=-1)
 						{
-							//System.out.println(line.substring(match1));
-							//System.out.println(match1);
 							parameter_name[current_param] = line.substring(2,match1-1);
 							scale_factor = Double.parseDouble(line.substring(match1+15).substring(0,line.substring(match1+15).length()-2));
 							parameter_scale_factor[current_param] = scale_factor;
@@ -285,9 +276,6 @@
 						
 						if(match2!=-1)
 						{
-							//System.out.println(line.substring(match1));
-							//System.out.println(match1);
-							//parameter_name = line.substring(2,match2-1);
 							add_offset = Double.parseDouble(line.substring(match2+13).substring(0,line.substring(match2+13).length()-2));
 							parameter_add_offset[current_param] = add_offset;
 							System.out.println(parameter_name[current_param]+" add offset is = "+parameter_add_offset[current_param]);
@@ -394,11 +382,11 @@
 					
 					//the next 3 lines delete the file testing1.currenttime.txt
 					
-					/*command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFilesForERA\\"+lat+"_"+lon+"\\Final & del /Q testing1."+currenttime+".txt");	
+					command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFilesForERA\\"+lat+"_"+lon+"\\Final & del /Q testing1."+currenttime+".txt");	
 										
 					process = Runtime.getRuntime().exec(command.toString());
 							
-					process.waitFor();*/
+					process.waitFor();
 					
 					//step 2 starts here
 					
@@ -886,11 +874,11 @@
 						
 						//the next 3 lines delete the file FirstTest.currenttime.xlsx
 						
-						/*command = new StringBuilder(locationOfWGET+"\\SomeFilesForERA\\"+lat+"_"+lon+"\\Final & del /Q FirstTest."+currenttime+".xlsx");	
+						command = new StringBuilder(locationOfWGET+"\\SomeFilesForERA\\"+lat+"_"+lon+"\\Final & del /Q FirstTest."+currenttime+".xlsx");	
 										
 						process = Runtime.getRuntime().exec(command.toString());
 							
-						process.waitFor();*/
+						process.waitFor();
 						
 						fos = new FileOutputStream(new File(locationOfWGET+"\\SomeFilesForERA\\"+lat+"_"+lon+"\\Final\\FinalFirstTest."+currenttime+".xlsx"));
 						newworkbook.write(fos);
@@ -946,17 +934,6 @@
 				}
 				
 %>
-
-	<!--<br><br>Your file is ready to be downloaded, click download!
-	<form method="GET" action="DownloadExcelFileEra.jsp" target="dummyframe">
-	<input name='fileName' value=<%= finalexcelfile %> type='text' readonly><br>
-	<input name='currenttime' value=<%= currenttime %> type='text' readonly><br>
-	<input name='submit' value='download' type='submit'>
-	</form>
-	<iframe width="0" height="0" border="0" name="dummyframe" id="dummyframe" style="border:none;">
-	</iframe>-->
-	
-	
 
 </body>
 </html>

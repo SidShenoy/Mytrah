@@ -12,7 +12,6 @@
 				String currenttime = " ";
 				int test=0;
 				
-				//String locationOfWGET = "C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff";
 				String locationOfWGET = "C:\\JSP Project\\tomcat\\webapps\\ROOT\\SidPrac\\Mytrah\\Prerequisite-Tools";
 				String locationOfWGETPowerShell = "C:\\'JSP Project'\\tomcat\\webapps\\ROOT\\SidPrac\\Mytrah\\Prerequisite-Tools";
 				
@@ -24,10 +23,7 @@
 					
 					finalexcelfile = "FinalFirstTest."+currenttime+".xlsx";
 					
-					//String lat = "20.5";
-					//String lon = "77.5";
 					String lat = request.getParameter("lat");
-					out.println("lat = "+lat);
 					String lon = request.getParameter("lon");
 					String str[] = request.getParameterValues("variable");
 					String startyr = request.getParameter("startyr");
@@ -37,7 +33,10 @@
 					String endmon = request.getParameter("endmon");
 					String endday = request.getParameter("endday");
 					
-					/*String str[] = {"cldprs","cldtmp","disph","h1000"};
+					//Was used for testing purposes
+					/*String lat = "20.5";
+					String lon = "77.5";
+					String str[] = {cldprs","cldtmp","disph","h1000"};
 					String startyr = "1980";
 					String startmon = "03";
 					String startday = "01";
@@ -579,8 +578,6 @@
 							
 					process.waitFor();
 					
-					
-					
 					//code from practice2 ends here
 					
 					char c;
@@ -879,12 +876,11 @@
 					
 					//the next 3 lines delete the file 1980.currenttime.nc
 					
-					/*command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+" & del /Q 1980."+currenttime+".nc");	
+					command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+" & del /Q 1980."+currenttime+".nc");	
 										
 					process = Runtime.getRuntime().exec(command.toString());
 							
 					process.waitFor();
-					*/
 					
 					command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+" & copy "+lat+"_"+lon+"."+currenttime+".nc Final");	
 								
