@@ -8,7 +8,8 @@
 		String fileName = request.getParameter("fileName");
 		String currenttime = request.getParameter("currenttime");
         String node = request.getParameter("node");
-		String locationOfWGET = "C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff";
+		//String locationOfWGET = "C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff";
+		String locationOfWGET = "C:\\JSP Project\\tomcat\\webapps\\ROOT\\SidPrac\\Mytrah\\Prerequisite-Tools";
 		
 		String filePath = locationOfWGET+"\\SomeFiles\\"+node+"\\Final\\" + fileName;
         File downloadFile = new File(filePath);

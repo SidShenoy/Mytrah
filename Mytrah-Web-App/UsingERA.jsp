@@ -38,12 +38,14 @@
 				
 				String username = "f2015057@hyderabad.bits-pilani.ac.in";
 				String password = "lF5k3f";
-				String locationOfWGET = "C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff";
+				//String locationOfWGET = "C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff";
+				String locationOfWGET = "C:\\JSP Project\\tomcat\\webapps\\ROOT\\SidPrac\\Mytrah\\Prerequisite-Tools";
+
 				
-				double latmax = Double.parseDouble(lat) + 0.75; //previously 0.1
-				double latmin = Double.parseDouble(lat) - 0.75; //previously 0.1
-				double lonmax = Double.parseDouble(lon) + 0.75; //previously 0.1
-				double lonmin = Double.parseDouble(lon) - 0.75; //previously 0.1
+				double latmax = Double.parseDouble(lat) + 0.1; //previously 0.1
+				double latmin = Double.parseDouble(lat) - 0.1; //previously 0.1
+				double lonmax = Double.parseDouble(lon) + 0.1; //previously 0.1
+				double lonmin = Double.parseDouble(lon) - 0.1; //previously 0.1
 				
 				String start_Date = startyr+startmon+startday;
 				String end_Date = endyr+endmon+endday;
@@ -107,9 +109,21 @@
 				
 				try
 				{
-					StringBuilder command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFilesForERA\\"+lat+"_"+lon+" &  dir /b /a-d | find \""+start_Date+"_"+end_Date+"."+presence+".nc\"");
-									
+					StringBuilder command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFilesForERA\\ & mkdir "+lat+"_"+lon);	
+								
 					Process process = Runtime.getRuntime().exec(command.toString());
+					
+					process.waitFor();
+					
+					command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFilesForERA\\"+lat+"_"+lon+" & mkdir Final");
+									
+					process = Runtime.getRuntime().exec(command.toString());
+											
+					process.waitFor();
+					
+					command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFilesForERA\\"+lat+"_"+lon+" &  dir /b /a-d | find \""+start_Date+"_"+end_Date+"."+presence+".nc\"");
+									
+					process = Runtime.getRuntime().exec(command.toString());
 											
 					BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));
 												
@@ -289,7 +303,7 @@
 					int sheetno = 1,rowno = 1,cellno = 0,totalnorows = 0;
 					c = ' ';
 					
-					String startDate = "01/01/1979 00:00:00";
+					String startDate = startday+"/"+startmon+"/"+startyr+" 00:00:00";
 					df = new SimpleDateFormat("dd/mm/yyyy hh:mm:ss");
 					dateobj = df.parse(startDate);
 
@@ -729,7 +743,7 @@
 							cellStyle.setDataFormat(createHelper.createDataFormat().getFormat("dd/mm/yyyy hh:mm:ss"));
 							Cell cell = row.createCell((short)cellno);
 							cell.setCellStyle(cellStyle);
-							cell.setCellFormula("A"+rowno+"+(1/24)");
+							cell.setCellFormula("A"+rowno+"+(6/24)");
 							cellno++;
 						}
 						

@@ -12,7 +12,9 @@
 				String currenttime = " ";
 				int test=0;
 				
-				String locationOfWGET = "C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff";
+				//String locationOfWGET = "C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff";
+				String locationOfWGET = "C:\\JSP Project\\tomcat\\webapps\\ROOT\\SidPrac\\Mytrah\\Prerequisite-Tools";
+				String locationOfWGETPowerShell = "C:\\'JSP Project'\\tomcat\\webapps\\ROOT\\SidPrac\\Mytrah\\Prerequisite-Tools";
 				
 				try
 				{
@@ -212,7 +214,12 @@
 					Other details presented are merely for debugging purposes<br>
 					
 					<%
-					StringBuilder command = new StringBuilder("cmd /c cd \""+locationOfWGET+"\" & wget \"https://goldsmr4.gesdisc.eosdis.nasa.gov/cgi-bin/OTF/HTTP_DpFileDownloadMERRA2.pl?DATASET=MERRA_DP&FCP_DIR=/ftp/private/tmp/&APPLICATION=SUBSET_MERRA2&FILTER=SUBSET_MERRA2&SUB_LONMIN=76.875&SUB_LONMAX=78.125&SUB_LATMAX=21&SUB_LATMIN=20&OUTPUT_FORMAT=nc4c&LOOKUPID_List=M2T1NXSLV&STARTYR="+startyr+"&STARTMON="+startmon+"&STARTDAY="+startday+"&ENDYR="+endyr+"&ENDMON="+endmon+"&ENDDAY="+endday+"&");
+					double latmaxWGET = Double.parseDouble(lat) + 0.625;
+					double latminWGET = Double.parseDouble(lat) - 0.625;
+					double lonmaxWGET = Double.parseDouble(lon) + 0.625;
+					double lonminWGET = Double.parseDouble(lon) - 0.625;
+					
+					StringBuilder command = new StringBuilder("cmd /c cd \""+locationOfWGET+"\" & wget \"https://goldsmr4.gesdisc.eosdis.nasa.gov/cgi-bin/OTF/HTTP_DpFileDownloadMERRA2.pl?DATASET=MERRA_DP&FCP_DIR=/ftp/private/tmp/&APPLICATION=SUBSET_MERRA2&FILTER=SUBSET_MERRA2&SUB_LONMIN="+lonminWGET+"&SUB_LONMAX="+lonmaxWGET+"&SUB_LATMAX="+latmaxWGET+"&SUB_LATMIN="+latminWGET+"&OUTPUT_FORMAT=nc4c&LOOKUPID_List=M2T1NXSLV&STARTYR="+startyr+"&STARTMON="+startmon+"&STARTDAY="+startday+"&ENDYR="+endyr+"&ENDMON="+endmon+"&ENDDAY="+endday+"&");
 					
 					for(int i=0;i<str.length;i++)
 					{
@@ -292,6 +299,20 @@
 					
 					int presenceOfFiles[] = new int[numberOfDays];
 					int currentnoofdays = 0;
+					
+					//code to create the needed 'node' specific folders
+					
+					command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFiles\\ & mkdir "+lat+"_"+lon);	
+								
+					process = Runtime.getRuntime().exec(command.toString());
+					
+					process.waitFor();
+					
+					command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+" & mkdir Final");
+									
+					process = Runtime.getRuntime().exec(command.toString());
+											
+					process.waitFor();
 					
 					//code to search for the presence of required files starts
 					
@@ -638,7 +659,7 @@
 					
 					//code for conversion from .nc4 to nc and the concatenation of all .nc files into a single .nc file starts here
 					
-					command2 = new StringBuilder("powershell /c cd "+locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+" ; ncrcat ");
+					command2 = new StringBuilder("powershell /c cd "+locationOfWGETPowerShell+"\\SomeFiles\\"+lat+"_"+lon+" ; ncrcat ");
 					
 					currentnoofdays = 0;
 					
@@ -827,6 +848,8 @@
 					
 					command2.append("1980."+currenttime+".nc");
 					
+					System.out.println(command2);
+					
 					process = Runtime.getRuntime().exec(command2.toString());
 					
 					process.waitFor();
@@ -856,11 +879,12 @@
 					
 					//the next 3 lines delete the file 1980.currenttime.nc
 					
-					command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+" & del /Q 1980."+currenttime+".nc");	
+					/*command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+" & del /Q 1980."+currenttime+".nc");	
 										
 					process = Runtime.getRuntime().exec(command.toString());
 							
 					process.waitFor();
+					*/
 					
 					command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+" & copy "+lat+"_"+lon+"."+currenttime+".nc Final");	
 								
@@ -901,7 +925,7 @@
 					int sheetno = 1,rowno = 1,cellno = 0,totalnorows = 0;
 					c = ' ';
 					
-					String startDate = "01/01/1979 00:00:00";
+					String startDate = startday+"/"+startmon+"/"+startyr+" 00:00:00";
 					df = new SimpleDateFormat("dd/mm/yyyy hh:mm:ss");
 					dateobj = df.parse(startDate);
 					
