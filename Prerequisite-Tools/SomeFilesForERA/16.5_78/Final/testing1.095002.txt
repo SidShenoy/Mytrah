@@ -1,0 +1,115 @@
+netcdf \16.5_78.095002 {
+dimensions:
+	latitude = 3 ;
+	longitude = 3 ;
+	time = UNLIMITED ; // (4 currently)
+variables:
+	float latitude(latitude) ;
+		latitude:units = "degrees_north" ;
+		latitude:long_name = "latitude" ;
+	float longitude(longitude) ;
+		longitude:units = "degrees_east" ;
+		longitude:long_name = "longitude" ;
+	short sp(time, latitude, longitude) ;
+		sp:scale_factor = 0.0391739657882288 ;
+		sp:add_offset = 96531.2616630171 ;
+		sp:_FillValue = -32767s ;
+		sp:missing_value = -32767s ;
+		sp:units = "Pa" ;
+		sp:long_name = "Surface pressure" ;
+		sp:standard_name = "surface_air_pressure" ;
+	short t2m(time, latitude, longitude) ;
+		t2m:scale_factor = 0.000196211639972895 ;
+		t2m:add_offset = 297.273308876602 ;
+		t2m:_FillValue = -32767s ;
+		t2m:missing_value = -32767s ;
+		t2m:units = "K" ;
+		t2m:long_name = "2 metre temperature" ;
+	int time(time) ;
+		time:units = "hours since 1900-01-01 00:00:0.0" ;
+		time:long_name = "time" ;
+		time:calendar = "gregorian" ;
+	short u10(time, latitude, longitude) ;
+		u10:scale_factor = 3.04590767478014e-005 ;
+		u10:add_offset = -2.35277268345683 ;
+		u10:_FillValue = -32767s ;
+		u10:missing_value = -32767s ;
+		u10:units = "m s**-1" ;
+		u10:long_name = "10 metre U wind component" ;
+	short v10(time, latitude, longitude) ;
+		v10:scale_factor = 4.32169510353261e-005 ;
+		v10:add_offset = 1.34856712638967 ;
+		v10:_FillValue = -32767s ;
+		v10:missing_value = -32767s ;
+		v10:units = "m s**-1" ;
+		v10:long_name = "10 metre V wind component" ;
+
+// global attributes:
+		:Conventions = "CF-1.6" ;
+		:history = "Thu Jul 27 09:50:07 2017: ncks -d longitude,77.25,78.75 -d latitude,15.75,17.25 19790101_19790101.01110000000000000000000000000100000000000000000000000000000000000000000000000000.nc 16.5_78.095002.nc\n",
+			"2017-07-26 07:56:56 GMT by grib_to_netcdf-2.4.0: grib_to_netcdf /data/data05/scratch/_mars-atls03-70e05f9f8ba4e9d19932f1c45a7be8d8-F78QLM.grib -o /data/data03/scratch/_grib2netcdf-atls05-98f536083ae965b31b0d04811be6f4c6-ft19NW.nc -utime" ;
+		:NCO = "20170727" ;
+data:
+
+ latitude = 17.25, 16.5, 15.75 ;
+
+ longitude = 77.25, 78, 78.75 ;
+
+ sp =
+  -20931, -29379, -8949,
+  2878, -2464, 8720,
+  11008, 21699, 28131,
+  -16732, -24950, -4115,
+  7024, 1830, 13258,
+  15268, 26077, 32767,
+  -25251, -32766, -11419,
+  -1315, -5897, 6058,
+  7297, 18588, 25723,
+  -18030, -25898, -5275,
+  5927, 1016, 12380,
+  14281, 25260, 31942 ;
+
+ t2m =
+  -21013, -25410, -32766,
+  -19611, -24062, -29872,
+  -20672, -23409, -29344,
+  17693, 14099, 9397,
+  18329, 15104, 10451,
+  15000, 13221, 9033,
+  32767, 27519, 21207,
+  32699, 27942, 22202,
+  27706, 24294, 17073,
+  -7909, -14721, -22231,
+  -7318, -13854, -19688,
+  -10579, -14425, -22600 ;
+
+ time = 692496, 692502, 692508, 692514 ;
+
+ u10 =
+  26992, 12460, 32767,
+  19253, 27406, -684,
+  19850, 29605, 4574,
+  -17385, -29998, -32766,
+  -22014, -28335, -32632,
+  -22401, -20510, -20670,
+  12499, -9208, -2088,
+  -16393, -28902, -23845,
+  -21255, -25116, -12780,
+  -27846, -16376, 23402,
+  -28421, -12845, 26737,
+  -28344, -1302, 18785 ;
+
+ v10 =
+  -13343, -8499, 17221,
+  -11357, -23188, -13711,
+  -9429, -21009, -32766,
+  5626, -5141, -11564,
+  11721, 3929, -5411,
+  10573, 3828, -9193,
+  6819, 602, -14165,
+  15491, 10972, -6343,
+  1302, 356, -8938,
+  27201, 14554, 1927,
+  32767, 14744, -5988,
+  16778, 1453, -12362 ;
+}
