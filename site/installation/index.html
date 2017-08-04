@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Siddhant Shenoy">
+  <link rel="shortcut icon" href="../favicon.ico">
+  
+  <title>Installation Steps - Mytrah MERRA2/ERA data download portal</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Installation Steps";
+    var mkdocs_page_input_path = "installation.md";
+    var mkdocs_page_url = "/installation/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Mytrah MERRA2/ERA data download portal</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../about/">About</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../defaults/">Defaults</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../howToUse/">How to use the app?</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Installation Steps</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#installation-steps">Installation Steps</a></li>
+    
+
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Mytrah MERRA2/ERA data download portal</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Installation Steps</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/SidShenoy/Mytrah/edit/master/docs/installation.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="installation-steps">Installation Steps</h1>
+<p><strong>Note : Installation steps are specific to Windows OS</strong></p>
+<p><code>1.</code> Make sure that you have installed <strong>Apache Tomcat</strong> server, if not then click <a href="https://tomcat.apache.org/tomcat-7.0-doc/setup.html">here</a></p>
+<p><code>2.</code> Change to the following working directory in <strong>Apache Tomcat</strong> server</p>
+<pre><code class="bash">$cd tomcat/webapps/ROOT
+</code></pre>
+
+<p><code>3.</code> Now paste the <em>Mytrah-Web-App</em> folder in this location. This is the folder that contains all the back-end code needed for the working of the app.</p>
+<p><code>4.</code> In this same <em>working directory</em> paste another folder i.e. <em>WEB-INF</em>. You will find this folder inside the <em>Apache-Tomcat-WEB-INF</em> folder. This folder cotainer all the .jar files which in turn contain all the .class files needed by the <strong>JSP</strong> pages in the app.</p>
+<p>The folder in step <code>2.</code> should now contain the <em>Mytrah-Web-App</em> and the <em>WEB-INF</em> folders.</p>
+<p><code>5.</code> Now <code>cd</code> to any location on your file system (your choice) and paste the <em>Prerequisite-Tools</em> folder there. This folder contains all the major <strong>commands</strong> as executable scripts needed by the <strong>terminal</strong> a.k.a. <strong>command prompt</strong>. These are used by the back-end code present in the <em>Mytrah-Web-App</em> folder.</p>
+<p><code>6.</code> The only major step now left, is to 'tell' the <em>Mytrah-Web-App</em> folder files, where the <em>Prerequisite-Tools</em> folder is present. For this, we need to make changes to 2 files.</p>
+<p><code>cd</code> to the <em>Mytrah-Web-App</em> folder and open the <em>UsingDATFile.jsp</em> file.</p>
+<pre><code class="bash">$cd tomcat/webapps/ROOT/Mytrah-Web-App
+</code></pre>
+
+<p>In line number <strong>15</strong>, change the value of the <em>locationOfWGET</em> String variable. This value should be equal to the location of the <em>Prerequisite-Tools</em> folder.</p>
+<p><img alt="UsingDATFile1" src="../UsingDATFile1.png" /></p>
+<p>Note that the back-slash needs to be 'escaped' by replacing the <code>\</code> with <code>\\</code>. Spaces are left as it is.</p>
+<p>e.g.</p>
+<pre><code class="bash">C:\JSP Project\tomcat\webapps\ROOT\SidPrac\Mytrah\Prerequisite-Tools  
+</code></pre>
+
+<p>Becomes</p>
+<pre><code class="bash">C:\\JSP Project\\tomcat\\webapps\\ROOT\\SidPrac\\Mytrah\\Prerequisite-Tools
+</code></pre>
+
+<p>In line number <strong>16</strong>, change the value of the <em>locationOfWGETPowerShell</em> String variable. This value should also be equal to the location of the <em>Prerequisite-Tools</em> folder. But here along with escaping the <code>\</code>, the spaces should also be taken care of using simgle quotes (<code>''</code>). Simply replace appropriate <code>folder name with spaces</code> with <code>'folder name with spaces'</code></p>
+<p><img alt="UsingDATFile2" src="../UsingDATFile2.png" /></p>
+<p>e.g.</p>
+<pre><code class="bash">C:\JSP Project\tomcat\webapps\ROOT\SidPrac\Mytrah\Prerequisite-Tools  
+</code></pre>
+
+<p>Becomes</p>
+<pre><code class="bash">C:\\'JSP Project'\\tomcat\\webapps\\ROOT\\SidPrac\\Mytrah\\Prerequisite-Tools
+</code></pre>
+
+<p>The reason for this is that <strong>CMD</strong> and <strong>Powershell</strong> work differently with location names.</p>
+<p><code>7.</code> Make similar changes to the <em>UsingERA.jsp</em> file which is also present in the same folder.</p>
+<p>In line number <strong>35</strong>, change the value of the <em>locationOfWGET</em> String variable. This value should also be equal to the location of the <em>Prerequisite-Tools</em> folder.</p>
+<p><img alt="UsingERA" src="../UsingERA.png" /></p>
+<p>Note that the back-slash needs to be 'escaped' by replacing the <code>\</code> with <code>\\</code>. Spaces are left as it is.</p>
+<p>e.g.</p>
+<pre><code class="bash">C:\JSP Project\tomcat\webapps\ROOT\SidPrac\Mytrah\Prerequisite-Tools  
+</code></pre>
+
+<p>Becomes</p>
+<pre><code class="bash">C:\\JSP Project\\tomcat\\webapps\\ROOT\\SidPrac\\Mytrah\\Prerequisite-Tools
+</code></pre>
+
+<p><code>8.</code> Please ensure that the <code>PATH</code> and <code>CLASS-PATH</code> environment variables are set properly to point to the installed java jdk. Usually, these are already set by default and nothing additional needs to be done.</p>
+<p><code>9.</code> Please read the <strong>DEFAULTS</strong> section in this documentation before proceeding.</p>
+<p><code>10.</code> You are now good to go! The app can be used at :</p>
+<p><code>localhost:&lt;port for Apache&gt;/Mytrah-Web-App/index.html</code></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../howToUse/" class="btn btn-neutral" title="How to use the app?"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>Mytrah India</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/SidShenoy/Mytrah" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../howToUse/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script src="../js/theme.js"></script>
+
+</body>
+</html>

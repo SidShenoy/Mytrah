@@ -1,0 +1,14 @@
+site_name: Mytrah MERRA2/ERA data download portal
+repo_url: https://github.com/SidShenoy/Mytrah
+site_description: A portal to download MERRA2/ERA data as an excel file
+site_author: Siddhant Shenoy
+site_favicon: favicon.ico
+copyright: Mytrah India
+remote_name: https://github.com/SidShenoy/Mytrah.git
+pages:
+    - Home: index.md
+    - About: about.md
+    - Defaults: defaults.md
+    - How to use the app?: howToUse.md
+    - Installation Steps: installation.md
+theme: readthedocs

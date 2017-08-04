@@ -292,7 +292,7 @@
 					c = ' ';
 					
 					String startDate = startday+"/"+startmon+"/"+startyr+" 00:00:00";
-					df = new SimpleDateFormat("dd/mm/yyyy hh:mm:ss");
+					df = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
 					dateobj = df.parse(startDate);
 
 					System.out.println("date is -------> "+dateobj);

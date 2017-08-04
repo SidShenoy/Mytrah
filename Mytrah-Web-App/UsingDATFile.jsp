@@ -33,6 +33,8 @@
 					String endmon = request.getParameter("endmon");
 					String endday = request.getParameter("endday");
 					
+					System.out.println("Startdate is : "+startday+"/"+startmon+"/"+startyr);
+					
 					//Was used for testing purposes
 					/*String lat = "20.5";
 					String lon = "77.5";
@@ -548,6 +550,8 @@
 					int nooffilestodownload = 0;
 		
 					String currentline;
+					
+					System.out.println("NumberOfDays is "+numberOfDays);
 		
 					while(linepos<numberOfDays)
 					{
@@ -582,7 +586,7 @@
 					
 					char c;
 					
-					command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+" & dir /b /a-d | find \"MERRA2_100.tavg1_2d_slv_Nx\" | find /c /v \"\"");	
+					command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+" & dir /b /a-d | find \"MERRA2\" | find /c /v \"\"");	
 								
 					process = Runtime.getRuntime().exec(command.toString());
 					
@@ -619,7 +623,7 @@
 					 
 					process.waitFor();
 					
-					command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+" & dir /b /a-d | find \"MERRA2_100.tavg1_2d_slv_Nx\" | find /c /v \"\"");	
+					command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+" & dir /b /a-d | find \"MERRA2\" | find /c /v \"\"");	
 								
 					process = Runtime.getRuntime().exec(command.toString());
 					
@@ -645,6 +649,36 @@
 					<%
 					
 					}
+					
+					//next few lines obtain the first 26 characters of the .nc4 file downloaded (any 1 of them, first match actually)
+					
+					/*command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+" & dir /b /a-d | find \"MERRA2\"");	
+								
+					process = Runtime.getRuntime().exec(command.toString());
+					
+					br = new BufferedReader(new InputStreamReader(process.getInputStream()));
+					
+					StringBuilder first26Characters = new StringBuilder("");
+					
+					int characterIndex = 1;
+					
+					while((c=(char)br.read())!=65535)
+					{
+						if(characterIndex<=26)
+						{
+							first26Characters.append(c);
+							characterIndex++;
+						}
+						else
+						{break;}
+					}	
+					
+					process.waitFor();
+					
+					br.close();
+										
+					System.out.println("first 26 characters are = "+first26Characters);
+					*/
 					
 					//the next 3 lines delete the file wget_week1of1980da.currenttime.dat 
 					
@@ -757,9 +791,26 @@
 													date = "" + day;
 												}
 												
+												command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+" & dir /b /a-d | find \""+year+""+month+""+date+".SUB.nc4\"");	
+								
+												process = Runtime.getRuntime().exec(command.toString());
+												
+												br = new BufferedReader(new InputStreamReader(process.getInputStream()));
+												
+												StringBuilder nc4FileName = new StringBuilder("");
+												
+												while((c=(char)br.read())!=65535)
+												{
+													nc4FileName.append(c);
+												}	
+												
+												process.waitFor();
+												
+												br.close();
+												
 												if(presenceOfFiles[currentnoofdays]==0)
 												{
-													command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+" & ncks -3 MERRA2_100.tavg1_2d_slv_Nx."+year+""+month+""+date+".SUB.nc4 "+year+""+month+""+date+"."+presence+".nc");
+													command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+" & ncks -3 "+nc4FileName.toString().trim()+" "+year+""+month+""+date+"."+presence+".nc");
 										
 													process = Runtime.getRuntime().exec(command.toString());
 						
@@ -826,9 +877,26 @@
 													date = "" + day;
 												}
 												
+												command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+" & dir /b /a-d | find \""+year+""+month+""+date+".SUB.nc4\"");	
+								
+												process = Runtime.getRuntime().exec(command.toString());
+												
+												br = new BufferedReader(new InputStreamReader(process.getInputStream()));
+												
+												StringBuilder nc4FileName = new StringBuilder("");
+												
+												while((c=(char)br.read())!=65535)
+												{
+													nc4FileName.append(c);
+												}	
+												
+												process.waitFor();
+												
+												br.close();
+												
 												if(presenceOfFiles[currentnoofdays]==0)
 												{
-													command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+" & ncks -3 MERRA2_100.tavg1_2d_slv_Nx."+year+""+month+""+date+".SUB.nc4 "+year+""+month+""+date+"."+presence+".nc");
+													command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+" & ncks -3 "+nc4FileName+" "+year+""+month+""+date+"."+presence+".nc");
 										
 													process = Runtime.getRuntime().exec(command.toString());
 						
@@ -873,6 +941,8 @@
 					process = Runtime.getRuntime().exec(command.toString());
 					
 					process.waitFor();
+					
+					out.println("I am here 1!");
 					
 					//the next 3 lines delete the file 1980.currenttime.nc
 					
@@ -922,7 +992,8 @@
 					c = ' ';
 					
 					String startDate = startday+"/"+startmon+"/"+startyr+" 00:00:00";
-					df = new SimpleDateFormat("dd/mm/yyyy hh:mm:ss");
+					df = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+					System.out.println("startDate just before entry : "+startDate);
 					dateobj = df.parse(startDate);
 					
 					System.out.println("date is -------> "+dateobj);
