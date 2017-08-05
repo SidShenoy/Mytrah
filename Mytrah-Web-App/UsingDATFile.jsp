@@ -612,7 +612,7 @@
 					
 					while(countoffiles!=nooffilestodownload)
 					{
-					command = new StringBuilder("cmd /c cd \""+locationOfWGET+"\" & wget --quiet -nc --user mounika --password Mytrah_123 --load-cookies \"./.urs_cookies\" --save-cookies \"./.urs_cookies\" --auth-no-challenge=on --keep-session-cookies --content-disposition -i wget_week1of1980da."+currenttime+".dat -P ./SomeFiles/"+lat+"_"+lon);
+					command = new StringBuilder("cmd /c cd \""+locationOfWGET+"\" & wget --quiet -nc --load-cookies \"./.urs_cookies\" --save-cookies \"./.urs_cookies\" --auth-no-challenge=on --keep-session-cookies --content-disposition -i wget_week1of1980da."+currenttime+".dat -P ./SomeFiles/"+lat+"_"+lon);
 					
 					%>
 					
