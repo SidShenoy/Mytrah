@@ -33,7 +33,6 @@
 				String username = "f2015057@hyderabad.bits-pilani.ac.in";
 				String password = "lF5k3f";
 				String locationOfWGET = "C:\\JSP Project\\tomcat\\webapps\\ROOT\\SidPrac\\Mytrah\\Prerequisite-Tools";
-
 				
 				double latmax = Double.parseDouble(lat) + 0.1; //previously 0.1
 				double latmin = Double.parseDouble(lat) - 0.1; //previously 0.1
@@ -181,7 +180,9 @@
 							server.retrieve(requestToBeSent);
 						}
 						catch(JSONException je)
-						{}
+						{
+							System.out.println("A JSONException occurred! This is needed for proper functionality of the app, so don't worry!");
+						}
 						catch(Exception e)
 						{
 							System.out.println("An exception occurred, please retry again.");
@@ -189,14 +190,16 @@
 							return;
 						}
 						
-						out.println("Successfully RETRIEVED the request Id!!!");
+						System.out.println("Successfully RETRIEVED the request Id!!!");
 					
 					//reading the file in order to obtain the request id and then obtain the download page
 					f = new File(locationOfWGET+"\\SomeFilesForERA\\"+"requestId.txt");
 					br = new BufferedReader(new FileReader(f));
 					String requestId = br.readLine();
+					System.out.println("requestId obtained just before downloadlink is "+requestId);
 					String urlDownloadPage = "https://apps.ecmwf.int/auth/login/password/?back=http://apps.ecmwf.int/datasets/data/interim-full-daily/levtype=sfc/requests/netcdf/" + requestId + "&uid=" + username + "&password=" + password;
-					command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\phantomjs\\phantomjs-2.1.1-windows\\bin & phantomjs save_page.js \"" + urlDownloadPage + "\" >> "+locationOfWGET+"\\SomeFilesForERA\\"+lat+"_"+lon+"\\"+start_Date+"_"+end_Date+"."+presence+".html");	
+					//command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\phantomjs\\phantomjs-2.1.1-windows\\bin & phantomjs save_page.js \"" + urlDownloadPage + "\" >> "+locationOfWGET+"\\SomeFilesForERA\\"+lat+"_"+lon+"\\"+start_Date+"_"+end_Date+"."+presence+".html");
+					command = new StringBuilder("cmd /c cd "+locationOfWGET+" & phantomjs save_page.js \"" + urlDownloadPage + "\" > SomeFilesForERA\\"+lat+"_"+lon+"\\"+start_Date+"_"+end_Date+"."+presence+".html");					
 								
 					process = Runtime.getRuntime().exec(command.toString());
 					
@@ -213,7 +216,17 @@
 					int index = downloadLink.indexOf("class=\"download_link\"");
 					downloadLink = downloadLink.substring(index+31,index+150);
 					
+					br.close();
+					
 					command = new StringBuilder("cmd /c cd "+locationOfWGET+" & wget -O SomeFilesForERA\\"+lat+"_"+lon+"\\"+start_Date+"_"+end_Date+"."+presence+".nc "+downloadLink);
+					
+					process = Runtime.getRuntime().exec(command.toString());
+					
+					process.waitFor();
+					
+					//the next 3 lines delete the "download page" .html file
+					
+					command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFilesForERA\\"+lat+"_"+lon+"\\"+" & del /Q "+start_Date+"_"+end_Date+"."+presence+".html");
 					
 					process = Runtime.getRuntime().exec(command.toString());
 					
@@ -234,7 +247,23 @@
 					
 					process.waitFor();
 					
+					//the next 3 lines delete the lat_lon.currenttime.nc file present in the lat_lon folder
+					
+					command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFilesForERA\\"+lat+"_"+lon+" & del /Q "+lat+"_"+lon+"."+currenttime+".nc");	
+								
+					process = Runtime.getRuntime().exec(command.toString());
+					
+					process.waitFor();
+					
 					command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFilesForERA\\"+lat+"_"+lon+"\\Final & ncdump "+lat+"_"+lon+"."+currenttime+".nc >> testing1."+currenttime+".txt");	
+								
+					process = Runtime.getRuntime().exec(command.toString());
+					
+					process.waitFor();
+					
+					//the next 3 lines delete the lat_lon.currenttime.nc file present in the lat_lon/Final folder
+					
+					command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFilesForERA\\"+lat+"_"+lon+"\\Final & del /Q "+lat+"_"+lon+"."+currenttime+".nc");	
 								
 					process = Runtime.getRuntime().exec(command.toString());
 					
@@ -304,7 +333,6 @@
 					XSSFSheet spreadsheet;
 					XSSFRow row;
 					
-					
 					StringBuilder value;
 					Double numericValue;
 					
@@ -335,8 +363,8 @@
 							}
 						}
 						
-						if(found_at!=4)
-						{
+						if(found_at!=str.length)
+						{					
 							scale_factor = parameter_scale_factor[found_at];
 							add_offset = parameter_add_offset[found_at];
 						}
@@ -347,7 +375,7 @@
 						}
 						
 						value = new StringBuilder("");
-								
+						
 						while((c=(char)br.read())!=';')
 						{
 							while((c=(char)br.read())==' ' || c=='\n' || c==13)
@@ -379,7 +407,7 @@
 					}
 					
 					br.close();
-					
+
 					//the next 3 lines delete the file testing1.currenttime.txt
 					
 					command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFilesForERA\\"+lat+"_"+lon+"\\Final & del /Q testing1."+currenttime+".txt");	
@@ -874,8 +902,8 @@
 						
 						//the next 3 lines delete the file FirstTest.currenttime.xlsx
 						
-						command = new StringBuilder(locationOfWGET+"\\SomeFilesForERA\\"+lat+"_"+lon+"\\Final & del /Q FirstTest."+currenttime+".xlsx");	
-										
+						command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFilesForERA\\"+lat+"_"+lon+"\\Final & del /Q FirstTest."+currenttime+".xlsx");	
+														
 						process = Runtime.getRuntime().exec(command.toString());
 							
 						process.waitFor();
