@@ -122,7 +122,20 @@
 </code></pre>
 
 <p><code>3.</code> Now paste the <em>Mytrah-Web-App</em> folder in this location. This is the folder that contains all the back-end code needed for the working of the app.</p>
-<p><code>4.</code> In this same <em>working directory</em> paste another folder i.e. <em>WEB-INF</em>. You will find this folder inside the <em>Apache-Tomcat-WEB-INF</em> folder. This folder cotainer all the .jar files which in turn contain all the .class files needed by the <strong>JSP</strong> pages in the app.</p>
+<p><code>4.</code> We now need to make a few changes to the <em>WEB-INF</em> folder. You will find this folder inside the <em>Apache-Tomcat-WEB-INF</em> folder. This folder cotainer all the .jar files which in turn contain all the .class files needed by the <strong>JSP</strong> pages in the app.</p>
+<p>Inside this folder, go inside the <em>lib</em> folder and you will find a <em>ecmwf-api-client-java.jar</em> file. Open it using <em>WinRAR</em> and go to <em>org/ecmwf/PaxHeaders.17111</em> folder. We need to edit the <em>API.java</em> file present here. In this file go to line number 175. Change the value of the <em>locationOfWGET</em> String variable. This value should be equal to the location of the <em>Prerequisite-Tools</em> folder.</p>
+<p><img alt="API.java file" src="../API_java.png" /></p>
+<p>Note that the back-slash needs to be 'escaped' by replacing the <code>\</code> with <code>\\</code>. Spaces are left as it is.</p>
+<p>e.g.</p>
+<pre><code class="bash">C:\JSP Project\tomcat\webapps\ROOT\SidPrac\Mytrah\Prerequisite-Tools  
+</code></pre>
+
+<p>Becomes</p>
+<pre><code class="bash">C:\\JSP Project\\tomcat\\webapps\\ROOT\\SidPrac\\Mytrah\\Prerequisite-Tools
+</code></pre>
+
+<p>Now save the changes made to the <em>API.java</em> file and compile it. 3 files will be created upon successful compilation, <em>API$IgnoreHostVerification.class</em>, <em>API$DummyTrustManager.class</em> and <em>API.class</em>. Copy and paste these files to the parent folder i.e. <em>org/ecmwf</em>. Now save the changes made to the <em>ecmwf-api-client-java.jar</em> file.</p>
+<p>You now need to copy the modified <em>WEB-INF</em> folder present inside the <em>Apache-Tomcat-WEB-INF</em> folder and paste in the same working directory as step <code>2.</code>.</p>
 <p>The folder in step <code>2.</code> should now contain the <em>Mytrah-Web-App</em> and the <em>WEB-INF</em> folders.</p>
 <p><code>5.</code> Now <code>cd</code> to any location on your file system (your choice) and paste the <em>Prerequisite-Tools</em> folder there. This folder contains all the major <strong>commands</strong> as executable scripts needed by the <strong>terminal</strong> a.k.a. <strong>command prompt</strong>. These are used by the back-end code present in the <em>Mytrah-Web-App</em> folder.</p>
 <p><code>6.</code> The only major step now left, is to 'tell' the <em>Mytrah-Web-App</em> folder files, where the <em>Prerequisite-Tools</em> folder is present. For this, we need to make changes to 2 files.</p>
@@ -164,7 +177,13 @@
 <pre><code class="bash">C:\\JSP Project\\tomcat\\webapps\\ROOT\\SidPrac\\Mytrah\\Prerequisite-Tools
 </code></pre>
 
-<p><code>8.</code> Please ensure that the <code>PATH</code> and <code>CLASS-PATH</code> environment variables are set properly to point to the installed java jdk. Usually, these are already set by default and nothing additional needs to be done.</p>
+<p><code>8.</code> Please ensure that the <code>PATH</code> and <code>CLASS-PATH</code> environment variables are set properly to point to the installed java jdk. Usually, these are already set by default.
+To the <code>PATH</code> environment variable kindly add the location of the <em>NCO Operator</em> folder present inside the <em>Prerequisite-Tools</em> folder.</p>
+<p>e.g.</p>
+<pre><code class="bash">C:\JSP Project\tomcat\webapps\ROOT\SidPrac\Mytrah\Prerequisite-Tools\NCO operator
+</code></pre>
+
+<p>This is needed in order to use commands like <code>ncrcat</code>,<code>ncdump</code> among others through the <em>command prompt</em> and <em>windows powershell</em>.</p>
 <p><code>9.</code> Please read the <strong>DEFAULTS</strong> section in this documentation before proceeding.</p>
 <p><code>10.</code> You are now good to go! The app can be used at :</p>
 <p><code>localhost:&lt;port for Apache&gt;/Mytrah-Web-App/index.html</code></p>
