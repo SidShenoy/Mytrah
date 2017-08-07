@@ -12,7 +12,26 @@ $cd tomcat/webapps/ROOT
 
 `3.` Now paste the *Mytrah-Web-App* folder in this location. This is the folder that contains all the back-end code needed for the working of the app.
 
-`4.` In this same *working directory* paste another folder i.e. *WEB-INF*. You will find this folder inside the *Apache-Tomcat-WEB-INF* folder. This folder cotainer all the .jar files which in turn contain all the .class files needed by the **JSP** pages in the app.
+`4.` We now need to make a few changes to the *WEB-INF* folder. You will find this folder inside the *Apache-Tomcat-WEB-INF* folder. This folder cotainer all the .jar files which in turn contain all the .class files needed by the **JSP** pages in the app.
+
+Inside this folder, go inside the *lib* folder and you will find a *ecmwf-api-client-java.jar* file. Open it using *WinRAR* and go to *org/ecmwf/PaxHeaders.17111* folder. We need to edit the *API.java* file present here. In this file go to line number 175. Change the value of the *locationOfWGET* String variable. This value should be equal to the location of the *Prerequisite-Tools* folder.
+
+![API.java file](API_java.png)
+
+Note that the back-slash needs to be 'escaped' by replacing the `\` with `\\`. Spaces are left as it is.
+
+e.g.
+```bash
+C:\JSP Project\tomcat\webapps\ROOT\SidPrac\Mytrah\Prerequisite-Tools  
+```
+Becomes
+```bash
+C:\\JSP Project\\tomcat\\webapps\\ROOT\\SidPrac\\Mytrah\\Prerequisite-Tools
+```
+
+Now save the changes made to the *API.java* file and compile it. 3 files will be created upon successful compilation, *API$IgnoreHostVerification.class*, *API$DummyTrustManager.class* and *API.class*. Copy and paste these files to the parent folder i.e. *org/ecmwf*. Now save the changes made to the *ecmwf-api-client-java.jar* file.
+
+You now need to copy the modified *WEB-INF* folder present inside the *Apache-Tomcat-WEB-INF* folder and paste in the same working directory as step `2.`.
 
 The folder in step `2.` should now contain the *Mytrah-Web-App* and the *WEB-INF* folders.
 
@@ -72,7 +91,15 @@ Becomes
 C:\\JSP Project\\tomcat\\webapps\\ROOT\\SidPrac\\Mytrah\\Prerequisite-Tools
 ```
 
-`8.` Please ensure that the `PATH` and `CLASS-PATH` environment variables are set properly to point to the installed java jdk. Usually, these are already set by default and nothing additional needs to be done.
+`8.` Please ensure that the `PATH` and `CLASS-PATH` environment variables are set properly to point to the installed java jdk. Usually, these are already set by default.
+To the `PATH` environment variable kindly add the location of the *NCO Operator* folder present inside the *Prerequisite-Tools* folder.
+
+e.g.
+```bash
+C:\JSP Project\tomcat\webapps\ROOT\SidPrac\Mytrah\Prerequisite-Tools\NCO operator
+```
+
+This is needed in order to use commands like `ncrcat`,`ncdump` among others through the *command prompt* and *windows powershell*.
 
 `9.` Please read the **DEFAULTS** section in this documentation before proceeding.
 

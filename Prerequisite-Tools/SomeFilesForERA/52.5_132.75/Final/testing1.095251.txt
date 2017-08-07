@@ -1,0 +1,73 @@
+netcdf \52.5_132.75.095251 {
+dimensions:
+	latitude = 1 ;
+	longitude = 1 ;
+	time = UNLIMITED ; // (12 currently)
+variables:
+	float latitude(latitude) ;
+		latitude:units = "degrees_north" ;
+		latitude:long_name = "latitude" ;
+	float longitude(longitude) ;
+		longitude:units = "degrees_east" ;
+		longitude:long_name = "longitude" ;
+	short t2m(time, latitude, longitude) ;
+		t2m:scale_factor = 0.000307173559623587 ;
+		t2m:add_offset = 289.522612526501 ;
+		t2m:_FillValue = -32767s ;
+		t2m:missing_value = -32767s ;
+		t2m:units = "K" ;
+		t2m:long_name = "2 metre temperature" ;
+	int time(time) ;
+		time:units = "hours since 1900-01-01 00:00:0.0" ;
+		time:long_name = "time" ;
+		time:calendar = "gregorian" ;
+	short u10(time, latitude, longitude) ;
+		u10:scale_factor = 8.72233268580974e-005 ;
+		u10:add_offset = -4.39791319860801 ;
+		u10:_FillValue = -32767s ;
+		u10:missing_value = -32767s ;
+		u10:units = "m s**-1" ;
+		u10:long_name = "10 metre U wind component" ;
+
+// global attributes:
+		:Conventions = "CF-1.6" ;
+		:history = "Mon Aug 07 09:52:52 2017: ncks -d longitude,132.65,132.85 -d latitude,52.4,52.6 19970808_19970810.01100000000000000000000000000000000000000000000000000000000000000000000000000000.nc 52.5_132.75.095251.nc\n",
+			"2017-08-07 04:18:46 GMT by grib_to_netcdf-2.4.0: grib_to_netcdf /data/data01/scratch/_mars-atls09-95e2cf679cd58ee9b4db4dd119a05a8d-fYWV0n.grib -o /data/data05/scratch/_grib2netcdf-atls01-70e05f9f8ba4e9d19932f1c45a7be8d8-V2glly.nc -utime" ;
+		:NCO = "20170807" ;
+data:
+
+ latitude = 52.5 ;
+
+ longitude = 132.75 ;
+
+ t2m =
+  5203,
+  24869,
+  -3819,
+  -22772,
+  5695,
+  24471,
+  1030,
+  -21203,
+  2595,
+  20836,
+  -4724,
+  -27199 ;
+
+ time = 855552, 855558, 855564, 855570, 855576, 855582, 855588, 855594, 
+    855600, 855606, 855612, 855618 ;
+
+ u10 =
+  14173,
+  7526,
+  15528,
+  16326,
+  -19609,
+  -19232,
+  4555,
+  13516,
+  2613,
+  9693,
+  26044,
+  29776 ;
+}

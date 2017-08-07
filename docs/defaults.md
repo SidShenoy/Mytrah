@@ -8,6 +8,10 @@ Inside this file, change the `http_user` to the username as needed and `http_pas
 
 ![username and password MERRA2](UserPass.png)
 
+You need to modify another file. Inside the *Mytrah-Web-App* folder is a file called *UsingDATFile.jsp*. Change the line numbers 17 and 18. The *user* String variable should contain the username and the *password* String variable should contain the password.
+
+![username and password UsingDATFile] (UserPassDAT.png)
+
 ####Username and Password for ERA
 
 The username and password entry for *ERA* is more tricky. So follow the steps carefully.
