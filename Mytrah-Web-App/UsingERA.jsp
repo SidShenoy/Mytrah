@@ -32,7 +32,7 @@
 				
 				String username = "f2015057@hyderabad.bits-pilani.ac.in";
 				String password = "lF5k3f";
-				String locationOfWGET = "C:\\JSP Project\\tomcat\\webapps\\ROOT\\SidPrac\\Mytrah\\Prerequisite-Tools";
+				String locationOfWGET = "D:\\Jos\\Soft\\apache-tomcat-8.0.33\\webapps\\Prerequisite-Tools";
 				
 				double latmax = Double.parseDouble(lat) + 0.1; //previously 0.1
 				double latmin = Double.parseDouble(lat) - 0.1; //previously 0.1

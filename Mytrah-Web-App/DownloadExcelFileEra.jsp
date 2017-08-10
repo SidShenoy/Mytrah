@@ -9,7 +9,7 @@
 		String currenttime = request.getParameter("currenttime");
         String node = request.getParameter("node");
 		//String locationOfWGET = "C:\\Users\\Siddhanth\\Documents\\JSPProjectDocuments\\parametersandstuff";
-		String locationOfWGET = "C:\\JSP Project\\tomcat\\webapps\\ROOT\\SidPrac\\Mytrah\\Prerequisite-Tools";
+		String locationOfWGET = "D:\\Jos\\Soft\\apache-tomcat-8.0.33\\webapps\\Prerequisite-Tools";
 		
 		String filePath = locationOfWGET+"\\SomeFilesForERA\\"+node+"\\Final\\" + fileName;
         File downloadFile = new File(filePath);

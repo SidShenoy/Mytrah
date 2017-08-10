@@ -12,8 +12,8 @@
 				String currenttime = " ";
 				int test=0;
 				
-				String locationOfWGET = "C:\\JSP Project\\tomcat\\webapps\\ROOT\\SidPrac\\Mytrah\\Prerequisite-Tools";
-				String locationOfWGETPowerShell = "C:\\'JSP Project'\\tomcat\\webapps\\ROOT\\SidPrac\\Mytrah\\Prerequisite-Tools";
+				String locationOfWGET = "D:\\Jos\\Soft\\apache-tomcat-8.0.33\\webapps\\Prerequisite-Tools";
+				String locationOfWGETPowerShell = "D:\\Jos\\Soft\\apache-tomcat-8.0.33\\webapps\\Prerequisite-Tools";
 				String user = "mounika";
 				String password = "Mytrah_123";
 				
