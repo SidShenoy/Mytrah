@@ -52,7 +52,7 @@
         inStream.close();
         outStream.close();
 		
-		StringBuilder command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFilesForERA\\"+node+"\\Final & del /Q FinalFirstTest."+currenttime+".xlsx");	
+		StringBuilder command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFilesForERA\\"+node+"\\Final & del /Q FirstTest."+currenttime+".xlsx");	
 										
 		Process process = Runtime.getRuntime().exec(command.toString());
 							
