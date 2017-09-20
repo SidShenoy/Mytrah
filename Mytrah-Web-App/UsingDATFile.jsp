@@ -23,7 +23,7 @@
 					Date dateobj = new Date();
 					currenttime = df.format(dateobj);
 					
-					finalexcelfile = "FinalFirstTest."+currenttime+".xlsx";
+					finalexcelfile = "FirstTest."+currenttime+".xlsx";
 					
 					String lat = request.getParameter("lat");
 					String lon = request.getParameter("lon");
@@ -1494,86 +1494,7 @@
 					
 						<br><br>
 					
-					<%
-					//code to copy spreadsheet named 'final' from 'FirstTest.'+currenttime+'.xlsx' into another excel file named 'FinalFirstTest.'+currenttime+'.xlsx'
-					
-						fis = new FileInputStream(new File(locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+"\\Final\\FirstTest."+currenttime+".xlsx"));
-						
-						//Get the workbook instance for XLS file 
-						workbook = new XSSFWorkbook(fis);
-						XSSFWorkbook newworkbook = new XSSFWorkbook();
-
-						//Get first sheet from the workbook
-						spreadsheet = workbook.getSheet("final");
-						XSSFSheet newsheet = newworkbook.createSheet("final");
-						
-						//Iterate through each rows from first sheet
-						Iterator <Row> rowIterator = spreadsheet.iterator();
-						rowno = 0;
-						
-						while(rowIterator.hasNext()) {
-							row = (XSSFRow)rowIterator.next();
-							
-							cellno=0;
-							
-							//For each row, iterate through each columns
-							Iterator <Cell> cellIterator = row.cellIterator();	
-							FormulaEvaluator evaluator = workbook.getCreationHelper().createFormulaEvaluator();
-							XSSFRow newrow = newsheet.createRow((short)rowno);
-							
-							while(cellIterator.hasNext()) {
-								Cell cell = cellIterator.next();
-								
-								if(rowno>1 && cellno==0)
-								{
-									//newrow.createCell((short)cellno).setCellValue(cell.getDateCellValue());
-									CellValue cellValue = evaluator.evaluate(cell);
-									Cell newcell = newrow.createCell((short)cellno);
-									CellStyle cellStyle = newworkbook.createCellStyle();
-									CreationHelper createHelper = newworkbook.getCreationHelper();
-									cellStyle.setDataFormat(createHelper.createDataFormat().getFormat("dd/mm/yyyy hh:mm:ss"));
-									newcell.setCellStyle(cellStyle);
-									newcell.setCellValue(cellValue.getNumberValue());
-								}
-								else
-								switch(cell.getCellTypeEnum()) {
-									case BOOLEAN:
-										newrow.createCell((short)cellno).setCellValue(cell.getBooleanCellValue());
-										break;
-									case NUMERIC:
-										newrow.createCell((short)cellno).setCellValue(cell.getNumericCellValue());
-										break;
-									case STRING:
-										newrow.createCell((short)cellno).setCellValue(cell.getStringCellValue());
-										break;
-									case FORMULA: 
-										CellValue cellValue = evaluator.evaluate(cell);
-										newrow.createCell((short)cellno).setCellValue(cellValue.getNumberValue());
-										break;
-									case BLANK:
-										break;
-									case ERROR:
-										break;
-								}
-								cellno++;
-							}
-							rowno++;
-						}
-						fis.close();
-						
-						//the next 3 lines delete the file FirstTest.currenttime.xlsx
-						
-						command = new StringBuilder("cmd /c cd "+locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+"\\Final & del /Q FirstTest."+currenttime+".xlsx");	
-										
-						process = Runtime.getRuntime().exec(command.toString());
-							
-						process.waitFor();
-						
-						fos = new FileOutputStream(new File(locationOfWGET+"\\SomeFiles\\"+lat+"_"+lon+"\\Final\\FinalFirstTest."+currenttime+".xlsx"));
-						newworkbook.write(fos);
-						fos.close();
-						out.println("FinalFirstTest."+currenttime+".xlsx written successfully");
-						
+					<%	
 						test=0;
 						
 						for(int i=0;i<numberOfSheets;i++)
